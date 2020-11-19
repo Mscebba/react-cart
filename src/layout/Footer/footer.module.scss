@@ -1,0 +1,24 @@
+@import '../../styles/_variables.scss';
+.footer {
+  background-color: $greyLight;
+  color: $secondaryColor;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 5rem;
+
+  h4 {
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

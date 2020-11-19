@@ -1,0 +1,17 @@
+@import '../../styles/_variables.scss';
+.cart {
+  display: flex;
+
+  &__items {
+    flex: 0 0 60%;
+    padding-right: 3rem;
+  }
+
+  &__total {
+    flex: 0 0 40%;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 3px;
+    background-color: lighten($greyLight, 20%);
+  }
+}

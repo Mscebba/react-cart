@@ -1,0 +1,13 @@
+.cart-item {
+  display: flex;
+  margin-bottom: 4rem;
+
+  &__image {
+    flex: 0 0 120px;
+  }
+
+  &__description {
+    flex: 1;
+    padding-left: 3rem;
+  }
+}

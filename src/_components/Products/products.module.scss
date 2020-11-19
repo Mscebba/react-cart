@@ -1,0 +1,17 @@
+@import '../../styles/_variables.scss';
+
+.products {
+  cursor: default;
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__title {
+    font-style: italic;
+    font-weight: 400;
+    color: $secondaryColor;
+    margin: 0 1rem 1rem;
+  }
+}
