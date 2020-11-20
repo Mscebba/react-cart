@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import * as actionTypes from './shop-types';
 
 export function addToCart(id) {
@@ -28,11 +30,47 @@ export function modifyQty(id, qty) {
   };
 }
 
+export function fetchItems() {
+  return {
+    type: actionTypes.FETCH_ITEMS,
+  };
+}
+
+export function fetchItemsSuccess(items) {
+  return {
+    type: actionTypes.FETCH_ITEMS_SUCCESS,
+    payload: items,
+  };
+}
+
+export function fetchItemsError(error) {
+  return {
+    type: actionTypes.FETCH_ITEMS_ERROR,
+    payload: error,
+  };
+}
+
 export function currentItem(item) {
   return {
     type: actionTypes.CURRENT_ITEM,
     payload: {
       item,
     },
+  };
+}
+
+export function fetchData() {
+  return (dispatch) => {
+    dispatch(fetchItems());
+    axios
+      .get('https://fakestoreapi.com/products/?limit=6')
+      .then((res) => {
+        const items = res.data;
+        dispatch(fetchItemsSuccess(items));
+      })
+      .catch((error) => {
+        const errorMsg = error.message;
+        dispatch(fetchItemsError(errorMsg));
+      });
   };
 }

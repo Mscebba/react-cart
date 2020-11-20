@@ -1,9 +1,11 @@
 import * as actionTypes from './shop-types';
 
 const INITIAL_STATE = {
-  products: [],
+  isLoading: false,
   cart: [],
+  items: [],
   currentItem: null,
+  error: '',
 };
 
 function shopReducer(state = INITIAL_STATE, action) {
@@ -16,6 +18,25 @@ function shopReducer(state = INITIAL_STATE, action) {
       return {};
     case actionTypes.CURRENT_ITEM:
       return {};
+    case actionTypes.FETCH_ITEMS:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case actionTypes.FETCH_ITEMS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        items: action.payload,
+        error: '',
+      };
+    case actionTypes.FETCH_ITEMS_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        items: [],
+        error: action.payload,
+      };
 
     default:
       return state;
