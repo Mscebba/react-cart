@@ -11,7 +11,10 @@ function Product({ item: { id, image, title, price } }) {
           <span>${price}</span>
           <div
             className={classes['product__card__image__img']}
-            style={{ backgroundImage: `url(${image})` }}
+            style={{
+              backgroundImage: `url(${image})`,
+              backgroundColor: '#ffffff',
+            }}
           />
           {/* <img src={image} alt={title} /> */}
         </div>

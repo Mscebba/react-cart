@@ -1,3 +1,4 @@
+@import '../../../styles/_variables.scss';
 .product-detail {
   display: flex;
   margin: auto;
@@ -13,7 +14,7 @@
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center center;
-      transition: all ease-in-out 0.28s;
+      overflow: hidden;
     }
     i {
       color: grey;
@@ -29,5 +30,12 @@
     &__text {
       margin: 2rem 0;
     }
+  }
+  // @media screen and (max-width: $large-breakpoint) {
+  //   display: block
+  // }
+
+  @media screen and (max-width: $medium-breakpoint) {
+    display: block;
   }
 }
