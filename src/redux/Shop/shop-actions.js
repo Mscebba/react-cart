@@ -50,9 +50,9 @@ export function fetchItemsError(error) {
   };
 }
 
-export function currentItem(item) {
+export function loadCurrentItem(item) {
   return {
-    type: actionTypes.CURRENT_ITEM,
+    type: actionTypes.LOAD_CURRENT_ITEM,
     payload: {
       item,
     },

@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchData } from '../../redux/Shop/shop-actions';
+import { fetchData, loadCurrentItem } from '../../redux/Shop/shop-actions';
 import Product from './Product/Product';
 
 import classes from './products.module.scss';
 
-function Products({ fetchData, itemsData: { items, error, isLoading } }) {
+function Products({
+  fetchData,
+  itemsData: { items, error, isLoading, currentItem },
+  loadCurrentItem,
+}) {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
@@ -17,7 +21,14 @@ function Products({ fetchData, itemsData: { items, error, isLoading } }) {
     <h2>{error}</h2>
   ) : (
     items.map((item) => {
-      return <Product item={item} key={item.id} />;
+      return (
+        <Product
+          item={item}
+          currentItem={currentItem}
+          key={item.id}
+          onClick={() => loadCurrentItem(item)}
+        />
+      );
     })
   );
 
@@ -40,6 +51,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchData: () => dispatch(fetchData()),
+    loadCurrentItem: (item) => dispatch(loadCurrentItem(item)),
   };
 }
 

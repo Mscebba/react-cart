@@ -1,7 +1,7 @@
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const MODIFY_QTY = 'MODIFY_QTY';
-export const CURRENT_ITEM = 'CURRENT_ITEM';
+export const LOAD_CURRENT_ITEM = 'LOAD_CURRENT_ITEM';
 export const FETCH_ITEMS = 'FETCH_ITEMS';
 export const FETCH_ITEMS_SUCCESS = 'FETCH_ITEMS_SUCCESS';
 export const FETCH_ITEMS_ERROR = 'FETCH_ITEMS_ERROR';

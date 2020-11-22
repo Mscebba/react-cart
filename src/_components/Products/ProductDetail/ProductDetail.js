@@ -1,32 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
+import { connect } from 'react-redux';
 
 import { zoomIn, zoomOut } from './zoomInFunc';
+import { addToCart } from '../../../redux/Shop/shop-actions';
+
 import classes from './product-detail.module.scss';
 
-function ProductDetail() {
-  const [product, setProduct] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const { id, image, price, title, description } = product;
-
-  const prodId = useParams();
-
-  async function GetProduct() {
-    setIsLoading(true);
-    try {
-      const res = await fetch(`https://fakestoreapi.com/products/${prodId.id}`);
-      res.json().then((data) => setProduct(data));
-    } catch (error) {
-      console.log(error);
-    }
-    setIsLoading(false);
-  }
-
-  useEffect(() => {
-    GetProduct();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+function ProductDetail({
+  addToCart,
+  currentItem: {
+    item: { id, description, image, price, title },
+    qty,
+  },
+}) {
+  let isLoading = false;
 
   let displayProduct = isLoading ? (
     <h2>Loading product</h2>
@@ -52,7 +39,7 @@ function ProductDetail() {
         <p className={classes['product-detail__description__text']}>
           {description}
         </p>
-        <button className='btn' to='/cart'>
+        <button className='btn' to='/cart' onClick={() => addToCart(id)}>
           <i className='material-icons-outlined'>shopping_cart</i>
           <span>Add to cart</span>
         </button>
@@ -63,4 +50,16 @@ function ProductDetail() {
   return displayProduct;
 }
 
-export default ProductDetail;
+function mapSateToProps(state) {
+  return {
+    currentItem: state.shop.currentItem,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addToCart: (id) => dispatch(addToCart(id)),
+  };
+}
+
+export default connect(mapSateToProps, mapDispatchToProps)(ProductDetail);

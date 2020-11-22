@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 import classes from './product.module.scss';
 
-function Product({ item: { id, image, title, price } }) {
+function Product({ item: { id, image, title, price }, onClick }) {
   return (
     <div className={classes['product__card']} key={id}>
-      <Link to={`/product/${id}`}>
+      <Link to={`/product/${id}`} onClick={onClick}>
         <div className={classes['product__card__image']}>
           <span>${price}</span>
           <div
@@ -19,7 +19,7 @@ function Product({ item: { id, image, title, price } }) {
           {/* <img src={image} alt={title} /> */}
         </div>
       </Link>
-      <Link to={`/product/${id}`}>
+      <Link to={`/product/${id}`} onClick={onClick}>
         <b>{title}</b>
       </Link>
     </div>

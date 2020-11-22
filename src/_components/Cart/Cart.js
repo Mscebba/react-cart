@@ -1,34 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+
 import CartItem from './CartItem/CartItem';
+import { removeFromCart } from '../../redux/Shop/shop-actions';
 
 import classes from './cart.module.scss';
 
-function Cart({ setCart }) {
-  const [cartItems, setCartItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  async function fetchData() {
-    setIsLoading(true);
-    try {
-      const res = await fetch('https://fakestoreapi.com/products/?limit=2');
-      res.json().then((data) => setCartItems(data));
-    } catch (error) {
-      console.log(error);
-    }
-    setIsLoading(false);
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  let showItems = isLoading ? (
-    <h1>Loading items...</h1>
-  ) : (
-    cartItems.map((item) => {
-      return <CartItem item={item} key={item.id} />;
-    })
-  );
+function Cart({ cart, removeFromCart }) {
+  let showItems = cart.map((item) => {
+    return (
+      <CartItem
+        item={item}
+        key={item.id}
+        removeItem={() => removeFromCart(item.id)}
+      />
+    );
+  });
 
   return (
     <>
@@ -53,4 +40,16 @@ function Cart({ setCart }) {
   );
 }
 
-export default Cart;
+function mapStateToProps(state) {
+  return {
+    cart: state.shop.cart,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    removeFromCart: (id) => dispatch(removeFromCart(id)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

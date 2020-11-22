@@ -1,7 +1,20 @@
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import classes from './header.module.scss';
 
-function Header() {
+function Header({ cart }) {
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    let count = 0;
+    cart.forEach((item) => {
+      count += item.qty;
+    });
+    setCartCount(count);
+  }, [cart, cartCount]);
+
   return (
     <header>
       <nav role='navigation' className={classes['nav']}>
@@ -14,7 +27,7 @@ function Header() {
           <li>
             <Link to='/cart'>
               <i className='material-icons-outlined'>shopping_cart</i>
-              <span>3</span>
+              <span>{cartCount}</span>
             </Link>
           </li>
         </ul>
@@ -23,4 +36,10 @@ function Header() {
   );
 }
 
-export default Header;
+function mapStateToProps(state) {
+  return {
+    cart: state.shop.cart,
+  };
+}
+
+export default connect(mapStateToProps)(Header);
