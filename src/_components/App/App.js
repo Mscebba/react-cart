@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from '../../layout/Header/Header';
-import Footer from '../../layout/Footer/Footer';
 import Products from '../Products/Products';
 import ProductDetail from '../Products/ProductDetail/ProductDetail';
+import Footer from '../../layout/Footer/Footer';
 import Cart from '../Cart/Cart';
 
 import '../../styles/main.scss';

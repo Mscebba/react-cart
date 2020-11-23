@@ -8,7 +8,7 @@ import classes from './products.module.scss';
 
 function Products({
   fetchData,
-  itemsData: { items, error, isLoading, currentItem },
+  itemsData: { items, error, isLoading },
   loadCurrentItem,
 }) {
   useEffect(() => {
@@ -23,8 +23,7 @@ function Products({
     items.map((item) => {
       return (
         <Product
-          item={item}
-          currentItem={currentItem}
+          {...item}
           key={item.id}
           onClick={() => loadCurrentItem(item)}
         />

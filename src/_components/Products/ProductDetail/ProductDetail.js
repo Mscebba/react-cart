@@ -56,10 +56,4 @@ function mapSateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    addToCart: (id) => dispatch(addToCart(id)),
-  };
-}
-
-export default connect(mapSateToProps, mapDispatchToProps)(ProductDetail);
+export default connect(mapSateToProps, { addToCart })(ProductDetail);

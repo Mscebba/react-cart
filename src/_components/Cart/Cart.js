@@ -27,7 +27,7 @@ function Cart({ cart, removeFromCart }) {
           <ul>
             <li>Temporary amount: $53.98</li>
             <li>Shipping: Free</li>
-            <li>Tax 7%: $7</li>
+            <li>Tax 7%: $7 </li>
             <li>Total (including Tax) $53.98</li>
           </ul>
           <button className='btn' to='/cart'>
@@ -46,10 +46,4 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    removeFromCart: (id) => dispatch(removeFromCart(id)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default connect(mapStateToProps, { removeFromCart })(Cart);

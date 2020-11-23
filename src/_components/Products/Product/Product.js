@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import classes from './product.module.scss';
 
-function Product({ item: { id, image, title, price }, onClick }) {
+function Product({ id, image, title, price, onClick }) {
   return (
     <div className={classes['product__card']} key={id}>
       <Link to={`/product/${id}`} onClick={onClick}>
