@@ -1,0 +1,21 @@
+@import '../../styles/variables';
+.btn {
+  background-color: $accentColor;
+  color: $black;
+  display: flex;
+  padding: 1rem 3rem;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($accentColor, 10%);
+    transition: all ease-in-out 0.3s;
+  }
+
+  &.btn_block {
+    width: 100%;
+  }
+}

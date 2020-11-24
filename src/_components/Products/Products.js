@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchData, loadCurrentItem } from '../../redux/Shop/shop-actions';
+import { Spinner } from '../../ui';
 import Product from './Product/Product';
 
 import classes from './products.module.scss';
@@ -16,7 +17,7 @@ function Products({
   }, [fetchData]);
 
   let productsList = isLoading ? (
-    <h1>Loading products...</h1>
+    <Spinner />
   ) : error ? (
     <h2>{error}</h2>
   ) : (
@@ -41,17 +42,10 @@ function Products({
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    itemsData: state.shop,
-  };
-}
+const mapStateToProps = (state) => ({
+  itemsData: state.shop,
+});
 
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchData: () => dispatch(fetchData()),
-    loadCurrentItem: (item) => dispatch(loadCurrentItem(item)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default connect(mapStateToProps, { fetchData, loadCurrentItem })(
+  Products
+);

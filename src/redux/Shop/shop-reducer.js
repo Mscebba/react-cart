@@ -19,7 +19,7 @@ function shopReducer(state = INITIAL_STATE, action) {
         cart: isInCart
           ? state.cart.map((element) =>
               element.id === item.id
-                ? { ...element, qty: element.qty + 1 }
+                ? { ...element, qty: +element.qty + 1 }
                 : element
             )
           : [...state.cart, { ...item, qty: 1 }],

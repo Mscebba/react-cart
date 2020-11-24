@@ -10,7 +10,7 @@ function Header({ cart }) {
   useEffect(() => {
     let count = 0;
     cart.forEach((item) => {
-      count += item.qty;
+      count += +item.qty;
     });
     setCartCount(count);
   }, [cart, cartCount]);

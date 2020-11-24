@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { zoomIn, zoomOut } from './zoomInFunc';
 import { addToCart } from '../../../redux/Shop/shop-actions';
 
+import { Button } from '../../../ui';
 import classes from './product-detail.module.scss';
 
 function ProductDetail({
   addToCart,
   currentItem: {
     item: { id, description, image, price, title },
-    qty,
   },
 }) {
   let isLoading = false;
@@ -39,10 +39,10 @@ function ProductDetail({
         <p className={classes['product-detail__description__text']}>
           {description}
         </p>
-        <button className='btn' to='/cart' onClick={() => addToCart(id)}>
+        <Button className='btn' onClick={() => addToCart(id)}>
           <i className='material-icons-outlined'>shopping_cart</i>
           <span>Add to cart</span>
-        </button>
+        </Button>
       </div>
     </div>
   );
@@ -50,10 +50,8 @@ function ProductDetail({
   return displayProduct;
 }
 
-function mapSateToProps(state) {
-  return {
-    currentItem: state.shop.currentItem,
-  };
-}
+const mapSateToProps = (state) => ({
+  currentItem: state.shop.currentItem,
+});
 
 export default connect(mapSateToProps, { addToCart })(ProductDetail);

@@ -1,18 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { modifyQty } from '../../../redux/Shop/shop-actions';
 
 import classes from './cart-item.module.scss';
 
-function CartItem({ item: { image, price, title, qty }, removeItem }) {
+function CartItem({
+  id,
+  image,
+  price,
+  title,
+  qty,
+  removeItem,
+  modifyQty,
+  onClick,
+}) {
+  const [quantity, setQuantity] = useState(qty);
+
   return (
     <div className={classes['cart-item']}>
       <div className={classes['cart-item__image']}>
         <img src={image} alt={title} />
       </div>
       <div className={classes['cart-item__description']}>
-        <h3>{title}</h3>
+        <Link to={`/product/${id}`} onClick={onClick}>
+          <h3>{title}</h3>
+        </Link>
         <p>${price}</p>
-        <input type='number' size='2' maxLength='2' min='1' max='10' />
+        <input
+          type='number'
+          size='2'
+          maxLength='2'
+          min='1'
+          max='10'
+          value={quantity}
+          onChange={(e) => {
+            setQuantity(e.target.value);
+            modifyQty(id, e.target.value);
+          }}
+        />
         <Link
           to='#'
           onClick={removeItem}
@@ -30,4 +57,4 @@ function CartItem({ item: { image, price, title, qty }, removeItem }) {
   );
 }
 
-export default CartItem;
+export default connect(null, { modifyQty })(CartItem);
