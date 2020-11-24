@@ -35,7 +35,7 @@ function Cart({ cart, removeFromCart, loadCurrentItem }) {
 
   return (
     <>
-      <h1>Cart</h1>
+      <h1 className={classes['cart__title']}>Cart</h1>
       <div className={classes['cart']}>
         <div className={classes['cart__items']}>{showItems}</div>
         <aside className={classes.cart__total}>
@@ -46,6 +46,7 @@ function Cart({ cart, removeFromCart, loadCurrentItem }) {
             <li>Tax 7%: $7 </li>
             <li>Total (including Tax) ${price.toFixed(2)}</li>
           </ul>
+
           <Button block>
             <i className='material-icons-outlined'>shopping_cart</i>
             <span>Checkout</span>

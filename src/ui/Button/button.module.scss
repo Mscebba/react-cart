@@ -14,7 +14,21 @@
     background-color: darken($accentColor, 10%);
     transition: all ease-in-out 0.3s;
   }
-
+  &.btn_primary {
+    background-color: $primaryColor;
+    color: $white;
+  }
+  &.btn_light {
+    background-color: $greyLightest;
+    color: $greyMed;
+  }
+  &.btn_icon {
+    display: inline-flex;
+    padding: 1rem;
+  }
+  &.btn_small {
+    padding: 0.2rem;
+  }
   &.btn_block {
     width: 100%;
   }

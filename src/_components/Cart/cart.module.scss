@@ -2,6 +2,13 @@
 .cart {
   display: flex;
 
+  &__title {
+    font-style: italic;
+    font-weight: 400;
+    color: $secondaryColor;
+    margin: 0 1rem 1rem;
+  }
+
   &__items {
     flex: 0 0 60%;
     padding-right: 3rem;
@@ -12,6 +19,6 @@
     align-items: center;
     padding: 2rem;
     border-radius: 3px;
-    background-color: lighten($greyLight, 20%);
+    background-color: $greyLightest;
   }
 }

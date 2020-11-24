@@ -29,7 +29,6 @@ export function modifyQty(id, qty) {
     },
   };
 }
-
 export function fetchItems() {
   return {
     type: actionTypes.FETCH_ITEMS,

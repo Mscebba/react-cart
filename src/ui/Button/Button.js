@@ -1,12 +1,26 @@
 import classes from './button.module.scss';
 
-export default function Button({ children, onClick, block }) {
-  let btnClasses = block
-    ? `${classes['btn']} ${classes['btn_block']}`
-    : `${classes['btn']}`;
+export default function Button({
+  children,
+  onClick,
+  block,
+  primary,
+  light,
+  icon,
+  small,
+}) {
+  let btnClass = [
+    `${classes['btn']}`,
+    block && `${classes['btn_block']}`,
+    primary && `${classes['btn_primary']}`,
+    light && `${classes['btn_light']}`,
+    icon && `${classes['btn_icon']}`,
+    small && `${classes['btn_small']}`,
+  ];
+  btnClass = btnClass.join(' ');
 
   return (
-    <button onClick={onClick} className={btnClasses}>
+    <button onClick={onClick} className={btnClass}>
       {children}
     </button>
   );

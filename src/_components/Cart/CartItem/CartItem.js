@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { modifyQty } from '../../../redux/Shop/shop-actions';
+import { Button } from '../../../ui';
 
 import classes from './cart-item.module.scss';
 
@@ -14,9 +15,24 @@ function CartItem({
   qty,
   removeItem,
   modifyQty,
+  increaseQty,
+  decreaseQty,
   onClick,
 }) {
   const [quantity, setQuantity] = useState(qty);
+  const inputRef = useRef();
+
+  function increaseQTY(id) {
+    setQuantity(quantity + 1);
+    modifyQty(id, +inputRef.current.value + 1);
+  }
+
+  function decreaseQTY(id) {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+      modifyQty(id, +inputRef.current.value - 1);
+    }
+  }
 
   return (
     <div className={classes['cart-item']}>
@@ -28,18 +44,27 @@ function CartItem({
           <h3>{title}</h3>
         </Link>
         <p>${price}</p>
-        <input
-          type='number'
-          size='2'
-          maxLength='2'
-          min='1'
-          max='10'
-          value={quantity}
-          onChange={(e) => {
-            setQuantity(e.target.value);
-            modifyQty(id, e.target.value);
-          }}
-        />
+        <div className={classes['cart-item__description__quantity-ctrl']}>
+          <Button icon small light onClick={() => decreaseQTY(id)}>
+            <i className='material-icons-outlined'>remove</i>
+          </Button>
+          <input
+            type='number'
+            ref={inputRef}
+            size='2'
+            maxLength='2'
+            min='1'
+            max='10'
+            value={quantity}
+            onChange={(e) => {
+              setQuantity(e.target.value);
+              modifyQty(id, e.target.value);
+            }}
+          />
+          <Button icon small light onClick={() => increaseQTY(id)}>
+            <i className='material-icons-outlined'>add</i>
+          </Button>
+        </div>
         <Link
           to='#'
           onClick={removeItem}
