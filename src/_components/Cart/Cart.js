@@ -1,46 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import CartItem from './CartItem/CartItem';
-import { removeFromCart, loadCurrentItem } from '../../redux/Shop/shop-actions';
+import { loadCurrentItem } from '../../redux/Shop/shop-actions';
+import { cartItemsCount, cartItemsPrice } from '../../redux/Cart/cart-utils';
 
 import { Button } from '../../ui';
 import classes from './cart.module.scss';
 
-function Cart({ cart, removeFromCart, loadCurrentItem }) {
-  const [price, setPrice] = useState(0);
-  const [quantity, setQuantity] = useState(0);
-
-  useEffect(() => {
-    let price = 0;
-    let qty = 0;
-    cart.forEach((item) => {
-      qty += +item.qty;
-      price += item.qty * item.price;
-    });
-    setQuantity(qty);
-    setPrice(price);
-  }, [cart, quantity, setQuantity, price, setPrice]);
-
-  let showItems = cart.map((item) => {
+function Cart({ items, price, count, loadCurrentItem }) {
+  let showItems = items.map((item) => {
     return (
       <CartItem
-        {...item}
+        item={item}
         key={item.id}
         onClick={() => loadCurrentItem(item)}
-        removeItem={() => removeFromCart(item.id)}
       />
     );
   });
 
   return (
     <>
-      <h1 className={classes['cart__title']}>Cart</h1>
+      <h1 className={classes['cart__title']}>Shopping Cart</h1>
       <div className={classes['cart']}>
         <div className={classes['cart__items']}>{showItems}</div>
         <aside className={classes.cart__total}>
           <h3>The total amount</h3>
           <ul>
+            <li>Total items count: {count}</li>
             <li>Temporary amount: $53.98</li>
             <li>Shipping: Free</li>
             <li>Tax 7%: $7 </li>
@@ -57,8 +44,12 @@ function Cart({ cart, removeFromCart, loadCurrentItem }) {
   );
 }
 
-const mapStateToProps = (state) => ({ cart: state.shop.cart });
+const mapStateToProps = ({ cart: { items } }) => ({
+  items,
+  price: cartItemsPrice(items),
+  count: cartItemsCount(items),
+});
 
-export default connect(mapStateToProps, { removeFromCart, loadCurrentItem })(
-  Cart
-);
+export default connect(mapStateToProps, {
+  loadCurrentItem,
+})(Cart);

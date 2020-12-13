@@ -1,6 +1,8 @@
+@import '../../../styles/_variables.scss';
 .cart-item {
   display: flex;
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
+  position: relative;
 
   &__image {
     flex: 0 0 120px;
@@ -12,9 +14,19 @@
     &__quantity-ctrl {
       display: flex;
       align-items: center;
+      transform: scale(0.9) translateX(-1.5rem);
+      margin-bottom: 2rem;
       input {
         margin: 0 0.1rem;
       }
     }
+  }
+  &:not(:last-child):after {
+    content: '';
+    background-color: $greyLight;
+    position: absolute;
+    bottom: -3rem;
+    height: 1px;
+    width: 100%;
   }
 }

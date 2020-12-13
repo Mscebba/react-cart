@@ -2,18 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { zoomIn, zoomOut } from './zoomInFunc';
-import { addToCart } from '../../../redux/Shop/shop-actions';
+import { addToCart } from '../../../redux/Cart/cart-actions';
 
 import { Button } from '../../../ui';
 import classes from './product-detail.module.scss';
 
-function ProductDetail({
-  addToCart,
-  currentItem: {
-    item: { id, description, image, price, title },
-  },
-}) {
+function ProductDetail({ addToCart, currentItem: { item } }) {
   let isLoading = false;
+  const { id, description, image, price, title } = item;
 
   let displayProduct = isLoading ? (
     <h2>Loading product</h2>
@@ -39,7 +35,7 @@ function ProductDetail({
         <p className={classes['product-detail__description__text']}>
           {description}
         </p>
-        <Button className='btn' onClick={() => addToCart(id)}>
+        <Button className='btn' onClick={() => addToCart(item)}>
           <i className='material-icons-outlined'>shopping_cart</i>
           <span>Add to cart</span>
         </Button>

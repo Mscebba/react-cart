@@ -1,38 +1,24 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { modifyQty } from '../../../redux/Shop/shop-actions';
+import {
+  addToCart,
+  deleteFromCart,
+  removeFromCart,
+} from '../../../redux/Cart/cart-actions';
 import { Button } from '../../../ui';
 
 import classes from './cart-item.module.scss';
 
 function CartItem({
-  id,
-  image,
-  price,
-  title,
-  qty,
-  removeItem,
-  modifyQty,
-  increaseQty,
-  decreaseQty,
+  item,
+  removeFromCart,
   onClick,
+  addToCart,
+  deleteFromCart,
 }) {
-  const [quantity, setQuantity] = useState(qty);
-  const inputRef = useRef();
-
-  function increaseQTY(id) {
-    setQuantity(quantity + 1);
-    modifyQty(id, +inputRef.current.value + 1);
-  }
-
-  function decreaseQTY(id) {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-      modifyQty(id, +inputRef.current.value - 1);
-    }
-  }
+  const { id, image, price, title, qty } = item;
 
   return (
     <div className={classes['cart-item']}>
@@ -45,29 +31,17 @@ function CartItem({
         </Link>
         <p>${price}</p>
         <div className={classes['cart-item__description__quantity-ctrl']}>
-          <Button icon small light onClick={() => decreaseQTY(id)}>
+          <Button icon small light onClick={() => deleteFromCart(item)}>
             <i className='material-icons-outlined'>remove</i>
           </Button>
-          <input
-            type='number'
-            ref={inputRef}
-            size='2'
-            maxLength='2'
-            min='1'
-            max='10'
-            value={quantity}
-            onChange={(e) => {
-              setQuantity(e.target.value);
-              modifyQty(id, e.target.value);
-            }}
-          />
-          <Button icon small light onClick={() => increaseQTY(id)}>
+          <div>{qty}</div>
+          <Button icon small light onClick={() => addToCart(item)}>
             <i className='material-icons-outlined'>add</i>
           </Button>
         </div>
         <Link
           to='#'
-          onClick={removeItem}
+          onClick={() => removeFromCart(id)}
           style={{ display: 'flex', alignItems: 'center' }}
         >
           <i className='material-icons-outlined'>delete</i>
@@ -82,4 +56,8 @@ function CartItem({
   );
 }
 
-export default connect(null, { modifyQty })(CartItem);
+export default connect(null, {
+  addToCart,
+  deleteFromCart,
+  removeFromCart,
+})(CartItem);

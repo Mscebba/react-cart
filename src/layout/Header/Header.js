@@ -1,20 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { cartItemsCount } from '../../redux/Cart/cart-utils';
+
 import classes from './header.module.scss';
 
-function Header({ cart }) {
-  const [cartCount, setCartCount] = useState(0);
-
-  useEffect(() => {
-    let count = 0;
-    cart.forEach((item) => {
-      count += +item.qty;
-    });
-    setCartCount(count);
-  }, [cart, cartCount]);
-
+function Header({ count }) {
   return (
     <header>
       <nav role='navigation' className={classes['nav']}>
@@ -27,7 +19,7 @@ function Header({ cart }) {
           <li>
             <Link to='/cart'>
               <i className='material-icons-outlined'>shopping_cart</i>
-              <span>{cartCount}</span>
+              <span>{count}</span>
             </Link>
           </li>
         </ul>
@@ -36,9 +28,9 @@ function Header({ cart }) {
   );
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ cart: { items } }) {
   return {
-    cart: state.shop.cart,
+    count: cartItemsCount(items),
   };
 }
 

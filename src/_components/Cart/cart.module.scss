@@ -1,12 +1,14 @@
 @import '../../styles/_variables.scss';
 .cart {
   display: flex;
+  align-items: flex-start;
 
   &__title {
     font-style: italic;
     font-weight: 400;
+    text-align: center;
     color: $secondaryColor;
-    margin: 0 1rem 1rem;
+    margin-bottom: 3rem;
   }
 
   &__items {
@@ -20,5 +22,13 @@
     padding: 2rem;
     border-radius: 3px;
     background-color: $greyLightest;
+  }
+
+  @media screen and (max-width: $small-breakpoint) {
+    display: block;
+
+    &__items {
+      padding-right: 0;
+    }
   }
 }
