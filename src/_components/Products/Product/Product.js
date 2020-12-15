@@ -5,12 +5,12 @@ import classes from './product.module.scss';
 
 function Product({ id, image, title, price, onClick }) {
   return (
-    <div className={classes['product__card']} key={id}>
+    <div className={classes['product-card']} key={id}>
       <Link to={`/product/${id}`} onClick={onClick}>
-        <div className={classes['product__card__image']}>
+        <div className={classes['product-card__image']}>
           <span>${price}</span>
           <div
-            className={classes['product__card__image__img']}
+            className={classes['product-card__image__img']}
             style={{
               backgroundImage: `url(${image})`,
               backgroundColor: '#ffffff',

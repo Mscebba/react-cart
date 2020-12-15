@@ -39,18 +39,20 @@ function CartItem({
             <i className='material-icons-outlined'>add</i>
           </Button>
         </div>
-        <Link
-          to='#'
-          onClick={() => removeFromCart(id)}
-          style={{ display: 'flex', alignItems: 'center' }}
-        >
-          <i className='material-icons-outlined'>delete</i>
-          remove item
-        </Link>
-        <Link to='#' style={{ display: 'flex', alignItems: 'center' }}>
-          <i className='material-icons-outlined'>favorite_border</i>
-          add to whish list
-        </Link>
+        <div className={classes['cart-item__description__actions']}>
+          <Link
+            to='#'
+            onClick={() => removeFromCart(id)}
+            style={{ display: 'flex', alignItems: 'center' }}
+          >
+            <i className='material-icons-outlined'>delete</i>
+            remove item
+          </Link>
+          <Link to='#' style={{ display: 'flex', alignItems: 'center' }}>
+            <i className='material-icons-outlined'>favorite_border</i>
+            add to whish list
+          </Link>
+        </div>
       </div>
     </div>
   );

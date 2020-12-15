@@ -42,8 +42,8 @@ function Products({
   );
 }
 
-const mapStateToProps = (state) => ({
-  itemsData: state.shop,
+const mapStateToProps = ({ shop: itemsData }) => ({
+  itemsData,
 });
 
 export default connect(mapStateToProps, { fetchData, loadCurrentItem })(

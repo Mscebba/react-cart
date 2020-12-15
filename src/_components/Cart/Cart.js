@@ -9,6 +9,9 @@ import { Button } from '../../ui';
 import classes from './cart.module.scss';
 
 function Cart({ items, price, count, loadCurrentItem }) {
+  const tax = +(price * 0.07).toFixed(2);
+  const totalPrice = (price + tax).toFixed(2);
+
   let showItems = items.map((item) => {
     return (
       <CartItem
@@ -24,19 +27,27 @@ function Cart({ items, price, count, loadCurrentItem }) {
       <h1 className={classes['cart__title']}>Shopping Cart</h1>
       <div className={classes['cart']}>
         <div className={classes['cart__items']}>{showItems}</div>
-        <aside className={classes.cart__total}>
-          <h3>The total amount</h3>
+        <aside className={classes['cart__total']}>
+          <h3>
+            Cart Total <span>x{count} items</span>
+          </h3>
           <ul>
-            <li>Total items count: {count}</li>
-            <li>Temporary amount: $53.98</li>
-            <li>Shipping: Free</li>
-            <li>Tax 7%: $7 </li>
-            <li>Total (including Tax) ${price.toFixed(2)}</li>
+            <li>
+              <span>Subtotal:</span> <span>${price.toFixed(2)}</span>
+            </li>
+            <li>
+              <span>Shipping:</span> <span>Free</span>
+            </li>
+            <li>
+              <span>Tax 7%:</span> <span>${tax}</span>{' '}
+            </li>
+            <li className={classes['cart__total__price']}>
+              <span>Total</span> <span>${totalPrice}</span>
+            </li>
           </ul>
 
           <Button block>
-            <i className='material-icons-outlined'>shopping_cart</i>
-            <span>Checkout</span>
+            <span>Proceed to Checkout</span>
           </Button>
         </aside>
       </div>
