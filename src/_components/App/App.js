@@ -1,20 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import { auth, createDatabaseUser } from '../../firebase/firebase.utils';
 import Header from '../../layout/Header/Header';
 import Products from '../Products/Products';
 import ProductDetail from '../Products/ProductDetail/ProductDetail';
 import Footer from '../../layout/Footer/Footer';
 import Cart from '../Cart/Cart';
+import SignIn from '../SignIn/SignIn';
+import SignUp from '../SignUp/SignUp';
 
 import '../../styles/main.scss';
-import SignIn from '../SignIn/sign-in';
-import SignUp from '../SignUp/sign-up';
 
 export default function App() {
+  const [currentUser, setCurrentUser] = useState(null);
+  useEffect(() => {
+    let unsubscribeFromAuth = null;
+    unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createDatabaseUser(userAuth);
+
+        userRef.onSnapshot((snapShot) => {
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data(),
+          });
+        });
+      } else {
+        setCurrentUser(userAuth);
+      }
+    });
+    return () => {
+      unsubscribeFromAuth();
+    };
+  }, [currentUser]);
+
   return (
     <Router>
-      <Header />
+      <Header user={currentUser} />
       <main>
         <Switch>
           <Route exact path='/' component={Products} />

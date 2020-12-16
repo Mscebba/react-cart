@@ -24,7 +24,7 @@ function Cart({ items, price, count, loadCurrentItem }) {
 
   return (
     <>
-      <h1 className={classes['cart__title']}>Shopping Cart</h1>
+      <h1 className='title'>Shopping Cart</h1>
       <div className={classes['cart']}>
         <div className={classes['cart__items']}>{showItems}</div>
         <aside className={classes['cart__total']}>

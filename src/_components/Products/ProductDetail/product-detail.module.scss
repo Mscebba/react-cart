@@ -30,6 +30,13 @@
     &__text {
       margin: 2rem 0;
     }
+    &__cart-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 0.4rem;
+      stroke: $black;
+      stroke-width: 5;
+    }
   }
   // @media screen and (max-width: $large-breakpoint) {
   //   display: block

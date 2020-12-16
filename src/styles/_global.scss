@@ -11,3 +11,11 @@ main {
   position: relative;
   @extend .side-padd;
 }
+
+h1.title {
+  font-style: italic;
+  font-weight: 400;
+  text-align: center;
+  color: $secondaryColor;
+  margin-bottom: 3rem;
+}

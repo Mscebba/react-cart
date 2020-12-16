@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { zoomIn, zoomOut } from './zoomInFunc';
 import { addToCart } from '../../../redux/Cart/cart-actions';
 
+import { ReactComponent as CartIcon } from '../../../assets/cart.svg';
+
 import { Button } from '../../../ui';
 import classes from './product-detail.module.scss';
 
@@ -35,8 +37,10 @@ function ProductDetail({ addToCart, currentItem: { item } }) {
         <p className={classes['product-detail__description__text']}>
           {description}
         </p>
-        <Button className='btn' onClick={() => addToCart(item)}>
-          <i className='material-icons-outlined'>shopping_cart</i>
+        <Button onClick={() => addToCart(item)}>
+          <CartIcon
+            className={classes['product-detail__description__cart-icon']}
+          />
           <span>Add to cart</span>
         </Button>
       </div>

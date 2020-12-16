@@ -8,6 +8,7 @@ export default function Button({
   light,
   icon,
   small,
+  ...props
 }) {
   let btnClass = [
     `${classes['btn']}`,
@@ -20,7 +21,7 @@ export default function Button({
   btnClass = btnClass.join(' ');
 
   return (
-    <button onClick={onClick} className={btnClass}>
+    <button onClick={onClick} className={btnClass} {...props}>
       {children}
     </button>
   );

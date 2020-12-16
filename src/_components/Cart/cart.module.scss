@@ -3,14 +3,6 @@
   display: flex;
   align-items: flex-start;
 
-  &__title {
-    font-style: italic;
-    font-weight: 400;
-    text-align: center;
-    color: $secondaryColor;
-    margin-bottom: 3rem;
-  }
-
   &__items {
     flex: 0 0 60%;
     padding-right: 3rem;
@@ -33,7 +25,7 @@
       justify-content: space-between;
 
       span {
-        font-size: .9rem;
+        font-size: 0.9rem;
         color: $greyMed;
       }
     }
@@ -43,7 +35,7 @@
       margin: 1rem 0 4rem;
       padding: 0;
       li {
-        padding: .4rem 0;
+        padding: 0.4rem 0;
         display: flex;
         justify-content: space-between;
       }

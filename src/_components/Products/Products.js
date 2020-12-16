@@ -34,7 +34,7 @@ function Products({
 
   return (
     <div className={classes['products']}>
-      <h1 className={classes['products__title']}>New arrivals</h1>
+      <h1 className='title'>New arrivals</h1>
       <div role='grid' className={classes['products__grid']}>
         {productsList}
       </div>

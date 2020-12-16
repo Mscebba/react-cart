@@ -1,0 +1,13 @@
+@import '../../styles/variables';
+
+.form {
+  max-width: 40vw;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid lighten($greyLight, 20%);
+  border-radius: 3px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  box-shadow: 0 0 16px 0 rgba($color: $black, $alpha: 0.04);
+}
