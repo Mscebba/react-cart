@@ -1,0 +1,127 @@
+@import '../../styles/variables';
+.dropdown {
+  display: inline-block;
+  margin-left: 0.3rem;
+  position: relative;
+
+  &__trigger {
+    cursor: pointer;
+    position: relative;
+    z-index: 1000;
+  }
+
+  &__title {
+    color: $black;
+    padding: 0.5rem 1rem 0;
+  }
+
+  .menu {
+    background: $white;
+    position: absolute;
+    margin-top: 5px;
+    right: 0;
+    min-width: 200px;
+    z-index: 1000;
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.3);
+    animation: fadeIn ease 0.24s;
+    -webkit-animation: fadeIn ease 0.24s;
+    -moz-animation: fadeIn ease 0.24s;
+    -o-animation: fadeIn ease 0.24s;
+    -ms-animation: fadeIn ease 0.24s;
+
+    ul {
+      border-radius: 5px;
+      margin: 0;
+      padding: 0;
+      .dropdown-item {
+        color: $primaryColor;
+        list-style: none;
+        padding: 0.3rem 1rem;
+        cursor: pointer;
+        &:hover {
+          color: darken($accentColor, 40%);
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      right: 10px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 10px 10px 10px;
+      border-color: transparent transparent $white transparent;
+    }
+  }
+}
+
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 999;
+  animation: fadeIn ease 0.24s;
+  -webkit-animation: fadeIn ease 0.24s;
+  -moz-animation: fadeIn ease 0.24s;
+  -o-animation: fadeIn ease 0.24s;
+  -ms-animation: fadeIn ease 0.24s;
+}
+
+.fade-in {
+  animation: fadeIn ease 20s;
+  -webkit-animation: fadeIn ease 20s;
+  -moz-animation: fadeIn ease 20s;
+  -o-animation: fadeIn ease 20s;
+  -ms-animation: fadeIn ease 20s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

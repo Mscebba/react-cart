@@ -11,22 +11,25 @@
   &__description {
     flex: 1;
     padding-left: 3rem;
-    &__quantity-ctrl {
+    &__quantity {
       display: flex;
       align-items: center;
       transform: scale(0.9) translateX(-1.5rem);
-      margin-bottom: 2rem;
-      input {
-        margin: 0 0.1rem;
+      margin: 1rem 0;
+      div {
+        margin: 0 0.7rem;
       }
     }
     &__actions {
       display: flex;
-      a {
+      span {
         font-family: $sansFamily;
-        font-size: .8rem;
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
         margin-right: 1rem;
-        transition: all ease-in-out .2s;
+        transition: all ease-in-out 0.2s;
+        cursor: pointer;
         &:hover {
           color: $greyMed;
         }

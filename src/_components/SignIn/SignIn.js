@@ -1,15 +1,51 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { signInWithGoogle } from '../../firebase/firebase.utils';
+
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
+import useForm from '../../hooks/useForm';
+import validate from '../../utils/validate-signin';
+
 import { Button, FormInput, Form } from '../../ui';
 
 function SignIn() {
+  const { onChange, handleSubmit, values, errors, reset } = useForm(
+    login,
+    validate,
+    {
+      email: '',
+      password: '',
+    }
+  );
+
+  async function login() {
+    try {
+      await auth.signInWithEmailAndPassword(values.email, values.password);
+      reset();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <>
       <h1 className='title'>Sign In</h1>
-      <Form>
-        <FormInput type='email' name='email' placeholder='email' />
-        <FormInput type='password' name='password' placeholder='password' />
+      <Form onSubmit={handleSubmit}>
+        <FormInput
+          type='text'
+          name='email'
+          placeholder='email'
+          value={values.email}
+          onChange={onChange}
+          error={errors.email}
+          errorMessage={errors.email}
+        />
+        <FormInput
+          type='password'
+          name='password'
+          placeholder='password'
+          value={values.password}
+          onChange={onChange}
+        />
         <Button>Sign In</Button>
         <br />
         <p>

@@ -30,7 +30,7 @@ function CartItem({
           <h3>{title}</h3>
         </Link>
         <p>${price}</p>
-        <div className={classes['cart-item__description__quantity-ctrl']}>
+        <div className={classes['cart-item__description__quantity']}>
           <Button icon small light onClick={() => deleteFromCart(item)}>
             <i className='material-icons-outlined'>remove</i>
           </Button>
@@ -40,18 +40,14 @@ function CartItem({
           </Button>
         </div>
         <div className={classes['cart-item__description__actions']}>
-          <Link
-            to='#'
-            onClick={() => removeFromCart(id)}
-            style={{ display: 'flex', alignItems: 'center' }}
-          >
+          <span onClick={() => removeFromCart(id)}>
             <i className='material-icons-outlined'>delete</i>
             remove item
-          </Link>
-          <Link to='#' style={{ display: 'flex', alignItems: 'center' }}>
+          </span>
+          <span>
             <i className='material-icons-outlined'>favorite_border</i>
             add to whish list
-          </Link>
+          </span>
         </div>
       </div>
     </div>

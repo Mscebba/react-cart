@@ -20,18 +20,19 @@ header {
     text-decoration: none;
   }
 
-  ul {
-    font-family: $sansFamily;
-    font-size: .9rem;
-    list-style: none;
-    color: $white;
+  &__nav-links {
     display: flex;
     align-items: center;
+    list-style: none;
+    &__item {
+      font-family: $sansFamily;
+      font-size: 0.9rem;
+      color: $white;
 
-    li:not(:last-child) {
-      margin-right: 1rem;
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
     }
-
   }
 }
 .shopping-cart {
@@ -57,9 +58,9 @@ header {
   }
 }
 .dropdown {
-  margin-left: .4rem;
+  margin-left: 0.4rem;
   border-bottom: 2px dotted $greyMed;
-  padding-bottom: .15rem;
+  padding-bottom: 0.15rem;
   &:hover {
     color: $accentColor;
     border-color: $greyLight;
