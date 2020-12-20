@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { zoomIn, zoomOut } from './zoomInFunc';
-import { addToCart } from '../../../redux/Cart/cart-actions';
+import { addToCart } from 'redux/Cart/cart-actions';
 
-import { ReactComponent as CartIcon } from '../../../assets/cart.svg';
+import { ReactComponent as CartIcon } from 'assets/cart.svg';
 
-import { Button } from '../../../ui';
+import { Button, Spinner } from 'ui';
 import classes from './product-detail.module.scss';
 
 function ProductDetail({ addToCart, currentItem: { item } }) {
@@ -14,7 +14,7 @@ function ProductDetail({ addToCart, currentItem: { item } }) {
   const { id, description, image, price, title } = item;
 
   let displayProduct = isLoading ? (
-    <h2>Loading product</h2>
+    <Spinner />
   ) : (
     <div className={classes['product-detail']}>
       <div className={classes['product-detail__image']}>

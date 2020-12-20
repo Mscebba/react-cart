@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import useForm from '../../hooks/useForm';
-import validate from '../../utils/validate-signup';
-import { Button, FormInput, Form } from '../../ui';
-import { auth, createDatabaseUser } from '../../firebase/firebase.utils';
+import useForm from 'hooks/useForm';
+import validate from 'utils/validate-signup';
+import { Button, Form, FormInput, Title } from 'ui';
+import { auth, createDatabaseUser } from 'firebase/firebase.utils';
 
 function SignUp() {
   const { onChange, handleSubmit, values, errors, reset } = useForm(
@@ -35,7 +35,7 @@ function SignUp() {
 
   return (
     <>
-      <h1 className='title'>Create a new account</h1>
+      <Title>Create a new account</Title>
       <Form onSubmit={handleSubmit}>
         <FormInput
           type='text'

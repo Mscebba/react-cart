@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import CartItem from './CartItem/CartItem';
-import { loadCurrentItem } from '../../redux/Shop/shop-actions';
-import { cartItemsCount, cartItemsPrice } from '../../redux/Cart/cart-utils';
+import { loadCurrentItem } from 'redux/Shop/shop-actions';
+import { cartItemsCount, cartItemsPrice } from 'redux/Cart/cart-utils';
 
-import { Button } from '../../ui';
+import { Button, Title } from 'ui';
 import classes from './cart.module.scss';
 
 function Cart({ items, price, count, loadCurrentItem }) {
@@ -24,7 +24,7 @@ function Cart({ items, price, count, loadCurrentItem }) {
 
   return (
     <>
-      <h1 className='title'>Shopping Cart</h1>
+      <Title>Shopping Cart</Title>
       <div className={classes['cart']}>
         <div className={classes['cart__items']}>{showItems}</div>
         <aside className={classes['cart__total']}>

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchData, loadCurrentItem } from '../../redux/Shop/shop-actions';
-import { Spinner } from '../../ui';
+import { fetchData, loadCurrentItem } from 'redux/Shop/shop-actions';
+import { Spinner, Title } from 'ui';
 import Product from './Product/Product';
 
 import classes from './products.module.scss';
@@ -34,7 +34,7 @@ function Products({
 
   return (
     <div className={classes['products']}>
-      <h1 className='title'>New arrivals</h1>
+      <Title>New arrivals</Title>
       <div role='grid' className={classes['products__grid']}>
         {productsList}
       </div>

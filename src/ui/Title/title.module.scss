@@ -1,0 +1,8 @@
+@import 'styles/_variables.scss';
+h1.title {
+  font-style: italic;
+  font-weight: 400;
+  text-align: center;
+  color: $secondaryColor;
+  margin-bottom: 3rem;
+}

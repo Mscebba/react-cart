@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
-import useForm from '../../hooks/useForm';
-import validate from '../../utils/validate-signin';
+import { auth, signInWithGoogle } from 'firebase/firebase.utils';
+import useForm from 'hooks/useForm';
+import validate from 'utils/validate-signin';
 
-import { Button, FormInput, Form } from '../../ui';
+import { Button, FormInput, Form, Title } from 'ui';
 
 function SignIn() {
   const { onChange, handleSubmit, values, errors, reset } = useForm(
@@ -17,7 +17,7 @@ function SignIn() {
     }
   );
 
-  async function login() {
+  async function login({ signInWithGoogle }) {
     try {
       await auth.signInWithEmailAndPassword(values.email, values.password);
       reset();
@@ -28,7 +28,7 @@ function SignIn() {
 
   return (
     <>
-      <h1 className='title'>Sign In</h1>
+      <Title>Sign In</Title>
       <Form onSubmit={handleSubmit}>
         <FormInput
           type='text'

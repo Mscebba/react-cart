@@ -1,6 +1,7 @@
+import React from 'react';
 import classes from './button.module.scss';
 
-export default function Button({
+function Button({
   children,
   onClick,
   block,
@@ -26,3 +27,5 @@ export default function Button({
     </button>
   );
 }
+
+export default Button;

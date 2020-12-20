@@ -7,21 +7,19 @@ import {
 } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { auth, createDatabaseUser } from '../../firebase/firebase.utils';
-import { setCurrentUser } from '../../redux/User/user-actions';
-import Header from '../../layout/Header/Header';
-import Products from '../Products/Products';
-import ProductDetail from '../Products/ProductDetail/ProductDetail';
-import Footer from '../../layout/Footer/Footer';
-import Cart from '../Cart/Cart';
-import SignIn from '../SignIn/SignIn';
-import SignUp from '../SignUp/SignUp';
+import { auth, createDatabaseUser } from 'firebase/firebase.utils';
+import { setCurrentUser } from 'redux/User/user-actions';
+import Header from 'layout/Header/Header';
+import Products from '_components/Products/Products';
+import ProductDetail from '_components/Products/ProductDetail/ProductDetail';
+import Footer from 'layout/Footer/Footer';
+import Cart from '_components/Cart/Cart';
+import SignIn from '_components/SignIn/SignIn';
+import SignUp from '_components/SignUp/SignUp';
 
-import '../../styles/main.scss';
+import 'styles/main.scss';
 
 function App({ setCurrentUser, currentUser }) {
-  // const [currentUser, setCurrentUser] = useState(null);
-  console.log(currentUser, '<<<CurrentUser');
   useEffect(() => {
     let unsubscribeFromAuth = null;
     unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {

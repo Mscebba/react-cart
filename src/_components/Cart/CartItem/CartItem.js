@@ -6,8 +6,8 @@ import {
   addToCart,
   deleteFromCart,
   removeFromCart,
-} from '../../../redux/Cart/cart-actions';
-import { Button } from '../../../ui';
+} from 'redux/Cart/cart-actions';
+import { Button } from 'ui';
 
 import classes from './cart-item.module.scss';
 

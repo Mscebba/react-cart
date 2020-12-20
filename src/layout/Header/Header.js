@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { auth } from '../../firebase/firebase.utils';
-import { cartItemsCount } from '../../redux/Cart/cart-utils';
-import { ReactComponent as Cart } from '../../assets/cart.svg';
-import { DropDown, DropDownItem } from '../../ui';
+import { auth } from 'firebase/firebase.utils';
+import { cartItemsCount } from 'redux/Cart/cart-utils';
+import { ReactComponent as Cart } from 'assets/cart.svg';
+import { DropDown, DropDownItem } from 'ui';
 
-import logo from '../../assets/logo.png';
+import logo from 'assets/logo.png';
 
 import classes from './header.module.scss';
 
