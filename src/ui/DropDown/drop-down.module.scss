@@ -1,4 +1,5 @@
 @import 'styles/_variables.scss';
+@import 'styles/_mixins.scss';
 .dropdown {
   display: inline-block;
   margin-left: 0.3rem;
@@ -16,6 +17,7 @@
   }
 
   .menu {
+    @include fade-in(0.24s);
     background: $white;
     position: absolute;
     margin-top: 5px;
@@ -23,11 +25,6 @@
     min-width: 200px;
     z-index: 1000;
     box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.3);
-    animation: fadeIn ease 0.24s;
-    -webkit-animation: fadeIn ease 0.24s;
-    -moz-animation: fadeIn ease 0.24s;
-    -o-animation: fadeIn ease 0.24s;
-    -ms-animation: fadeIn ease 0.24s;
 
     ul {
       border-radius: 5px;
@@ -60,6 +57,7 @@
 }
 
 .backdrop {
+  @include fade-in(0.24s);
   background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
   top: 0;
@@ -67,61 +65,4 @@
   height: 100vh;
   width: 100vw;
   z-index: 999;
-  animation: fadeIn ease 0.24s;
-  -webkit-animation: fadeIn ease 0.24s;
-  -moz-animation: fadeIn ease 0.24s;
-  -o-animation: fadeIn ease 0.24s;
-  -ms-animation: fadeIn ease 0.24s;
-}
-
-.fade-in {
-  animation: fadeIn ease 20s;
-  -webkit-animation: fadeIn ease 20s;
-  -moz-animation: fadeIn ease 20s;
-  -o-animation: fadeIn ease 20s;
-  -ms-animation: fadeIn ease 20s;
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-ms-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }

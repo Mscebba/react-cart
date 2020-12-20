@@ -1,0 +1,37 @@
+@import 'styles/_variables.scss';
+@import 'styles/_mixins.scss';
+
+.empty-page {
+  font-size: 1.1rem;
+  color: $greyMed;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-top: 2rem;
+  @include fade-in;
+
+  &__icon {
+    background-color: lighten($greyLightest, 4%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    height: 40vh;
+    width: 40vh;
+    border-radius: 50%;
+
+    > * {
+      max-width: 60%;
+      opacity: 0.1;
+    }
+  }
+  &__title {
+    color: $black;
+  }
+  &__description {
+    color: $greyMed;
+  }
+  a {
+    color: darken($accentColor, 30%);
+  }
+}

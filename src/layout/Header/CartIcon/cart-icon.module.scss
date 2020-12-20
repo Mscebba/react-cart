@@ -1,0 +1,23 @@
+@import 'styles/_variables.scss';
+.shopping-cart {
+  position: relative;
+  display: flex;
+  &__cart {
+    width: 36px;
+    height: 36px;
+    fill: $white;
+  }
+  span {
+    background-color: $accentColor;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-align: center;
+    color: $black;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 12px;
+  }
+}

@@ -1,17 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
 
 import { auth } from 'firebase/firebase.utils';
-import { cartItemsCount } from 'redux/Cart/cart-utils';
-import { ReactComponent as Cart } from 'assets/cart.svg';
 import { DropDown, DropDownItem } from 'ui';
+import { selectCurrentUser } from 'redux/User/user-selectors';
+import CartIcon from './CartIcon/CartIcon';
 
 import logo from 'assets/logo.png';
 
 import classes from './header.module.scss';
 
-function Header({ count, currentUser }) {
+function Header({ currentUser }) {
   function signOut() {
     auth.signOut();
   }
@@ -47,9 +48,8 @@ function Header({ count, currentUser }) {
           </li>
           <li className={classes['nav__nav-links__item']}>Return & Orders</li>
           <li className={classes['nav__nav-links__item']}>
-            <Link to='/cart' className={classes['shopping-cart']}>
-              <span>{count}</span>
-              <Cart className={classes['shopping-cart__cart']} />
+            <Link to='/cart'>
+              <CartIcon />
             </Link>
           </li>
         </ul>
@@ -58,9 +58,8 @@ function Header({ count, currentUser }) {
   );
 }
 
-const mapStateToProps = ({ cart: { items }, user: { currentUser } }) => ({
-  count: cartItemsCount(items),
-  currentUser,
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
 });
 
 export default connect(mapStateToProps)(Header);
