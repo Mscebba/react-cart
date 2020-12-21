@@ -42,7 +42,7 @@
     }
   }
 
-  @media screen and (max-width: $small-breakpoint) {
+  @media screen and (max-width: $medium-breakpoint) {
     display: block;
 
     &__items {

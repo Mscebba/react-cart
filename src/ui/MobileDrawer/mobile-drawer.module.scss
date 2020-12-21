@@ -1,0 +1,41 @@
+@import 'styles/_variables.scss';
+@import 'styles/_mixins.scss';
+
+.mobile-drawer {
+  background-color: $white;
+  color: $black;
+  padding: 1.5rem;
+  position: absolute;
+  height: 100vh;
+  width: 80vw;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+  transition: all ease-in-out 0.64s;
+  transform: translateX(-100vw);
+
+  h1 {
+    small {
+      font-size: 1.3rem;
+      display: block;
+      overflow: hidden;
+      max-width: calc(80vw - 2rem);
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  nav {
+    display: flex;
+    flex-flow: column;
+
+    > * {
+      display: block;
+      padding: 1rem 0;
+      border-bottom: 1px dashed $greyLight;
+    }
+  }
+
+  &.show {
+    transform: translateX(0);
+  }
+}

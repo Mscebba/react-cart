@@ -14,7 +14,7 @@
     &__quantity {
       display: flex;
       align-items: center;
-      transform: scale(0.9) translateX(-1.5rem);
+      transform: scale(0.9) translateX(-1.2rem);
       margin: 1rem 0;
       div {
         margin: 0 0.7rem;
@@ -43,5 +43,21 @@
     bottom: -3rem;
     height: 1px;
     width: 100%;
+  }
+  @media screen and (max-width: $small-breakpoint) {
+    &__description {
+      padding-left: 2rem;
+
+      &__quantity {
+        transform: none;
+      }
+
+      &__actions {
+        display: block;
+        span {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
   }
 }

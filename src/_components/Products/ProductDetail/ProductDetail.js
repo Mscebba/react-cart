@@ -20,12 +20,16 @@ function ProductDetail({ addToCart, currentItem: { item } }) {
       <div className={classes['product-detail__image']}>
         <div
           id={id}
-          className={classes['product-detail__image__img']}
+          className={classes['product-detail__image__img-zoom']}
           style={{ backgroundImage: `url(${image})` }}
           onMouseMove={(event) => {
             zoomIn(event, id);
           }}
           onMouseOut={(e) => zoomOut(id)}
+        />
+        <div
+          className={classes['product-detail__image__img']}
+          style={{ backgroundImage: `url(${image})` }}
         />
         <i id='zoom' className='material-icons'>
           zoom_in

@@ -1,5 +1,6 @@
 @import 'styles/_variables.scss';
 .footer {
+  font-family: $sansFamily;
   background-color: $greyLight;
   color: $secondaryColor;
   font-size: 0.8rem;
@@ -17,8 +18,16 @@
     margin: 0;
     padding: 0;
     li {
-      margin: 0;
+      margin: 0.2rem 0;
       padding: 0;
+    }
+  }
+  @media screen and (max-width: $small-breakpoint) {
+    padding: 1rem 2rem;
+    flex-wrap: wrap;
+    section:not(:last-child) {
+      width: calc(100% / 2);
+      margin-bottom: 1rem;
     }
   }
 }

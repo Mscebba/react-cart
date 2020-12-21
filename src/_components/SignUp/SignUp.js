@@ -77,7 +77,7 @@ function SignUp() {
         <br />
         <p>
           Already registered?
-          <Link to='/signin'>Sign in</Link>
+          <Link to='/signin'> Sign in</Link>
         </p>
       </Form>
     </>

@@ -5,7 +5,11 @@
   width: calc((100vw - 6rem - 20vw) / 3);
 
   @media screen and (max-width: $large-breakpoint) {
-    width: calc((100% - 6rem) / 2);
+    width: calc((100vw - 4rem - 16vw) / 2);
+  }
+
+  @media screen and (max-width: $medium-breakpoint) {
+    width: calc((100vw - 4rem - 10vw) / 2);
   }
 
   @media screen and (max-width: $small-breakpoint) {
@@ -14,10 +18,10 @@
 
   &__image {
     background-color: $white;
-    height: calc((100vw - 6rem - 20vw) / 3 * 1.3);
     position: relative;
     border: 2px solid #ededed;
     margin-bottom: 1rem;
+    padding-top: 130%;
     box-shadow: 0 0 16px 0 rgba($color: $black, $alpha: 0.04);
     overflow: hidden;
 
@@ -40,21 +44,14 @@
       transition: all ease-in-out 0.35s;
     }
 
-    img {
-      object-fit: contain;
-      width: 100%;
-      height: 100%;
-      transform: scale(0.72);
-      opacity: 0.9;
-      object-position: center;
-      transition: all ease-in-out 0.28s;
-    }
-
     &__img {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       opacity: 0.9;
-      background-size: 65%;
+      background-size: 70%;
       background-repeat: no-repeat;
       background-position: center center;
       transition: all ease-in-out 0.28s;
@@ -73,10 +70,6 @@
       .product__card__image__img {
         background-size: 75%;
       }
-    }
-
-    @media screen and (max-width: $small-breakpoint) {
-      height: 60vh;
     }
   }
 }

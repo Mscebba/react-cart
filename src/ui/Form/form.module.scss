@@ -10,4 +10,12 @@
   flex-flow: column;
   align-items: center;
   box-shadow: 0 0 16px 0 rgba($color: $black, $alpha: 0.04);
+
+  @media screen and (max-width: $medium-breakpoint) {
+    max-width: 70vw;
+  }
+
+  @media screen and (max-width: $small-breakpoint) {
+    max-width: unset;
+  }
 }

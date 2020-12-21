@@ -49,3 +49,55 @@
     opacity: 1;
   }
 }
+
+@mixin slide-in($time: 0.8s) {
+  animation: slideIn ease $time;
+  -webkit-animation: slideIn ease $time;
+  -moz-animation: slideIn ease $time;
+  -o-animation: slideIn ease $time;
+  -ms-animation: slideIn ease $time;
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@-moz-keyframes slideIn {
+  0% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@-webkit-keyframes slideIn {
+  0% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@-o-keyframes slideIn {
+  0% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@-ms-keyframes slideIn {
+  0% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { BackDrop } from 'ui';
 
 import classes from './drop-down.module.scss';
 
@@ -27,6 +28,7 @@ export const DropDown = ({ dropdownLink, dropdownTitle, children }) => {
     }
     // outside click
     setShow(false);
+    document.body.removeAttribute('style');
   }
 
   // function showHide() {
@@ -45,11 +47,14 @@ export const DropDown = ({ dropdownLink, dropdownTitle, children }) => {
 
   return (
     <>
-      {show && <div className={classes['backdrop']}></div>}
+      <BackDrop show={show} />
       <div ref={node} className={classes['dropdown']}>
         <span
           className={classes['dropdown__trigger']}
-          onClick={() => setShow(!show)}
+          onClick={() => {
+            setShow(!show);
+            document.body.style.overflow = 'hidden';
+          }}
         >
           {dropdownLink}
         </span>
@@ -58,7 +63,14 @@ export const DropDown = ({ dropdownLink, dropdownTitle, children }) => {
             {dropdownTitle && (
               <h3 className={classes['dropdown__title']}>{dropdownTitle}</h3>
             )}
-            <ul onClick={() => setShow(!show)}>{children}</ul>
+            <ul
+              onClick={() => {
+                setShow(!show);
+                document.body.removeAttribute('style');
+              }}
+            >
+              {children}
+            </ul>
           </div>
         )}
       </div>

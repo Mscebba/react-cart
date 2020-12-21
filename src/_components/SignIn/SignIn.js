@@ -17,7 +17,7 @@ function SignIn() {
     }
   );
 
-  async function login({ signInWithGoogle }) {
+  async function login() {
     try {
       await auth.signInWithEmailAndPassword(values.email, values.password);
       reset();
@@ -50,7 +50,7 @@ function SignIn() {
         <br />
         <p>
           Don't have an account?
-          <Link to='/signup'>Register</Link>
+          <Link to='/signup'> Register</Link>
         </p>
       </Form>
       <div

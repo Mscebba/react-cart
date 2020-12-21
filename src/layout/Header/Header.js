@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
@@ -6,6 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import { auth } from 'firebase/firebase.utils';
 import { DropDown, DropDownItem } from 'ui';
 import { selectCurrentUser } from 'redux/User/user-selectors';
+import SideDrawer from './SideDrawer/SideDrawer';
 import CartIcon from './CartIcon/CartIcon';
 
 import logo from 'assets/logo.png';
@@ -13,17 +14,20 @@ import logo from 'assets/logo.png';
 import classes from './header.module.scss';
 
 function Header({ currentUser }) {
+  const [show, setShow] = useState(false);
   function signOut() {
     auth.signOut();
   }
   return (
-    <header>
-      <nav role='navigation' className={classes['nav']}>
-        <Link to='/' className={classes['nav__brand']}>
+    <header className={classes['header']}>
+      <div className={classes['header__brand']}>
+        <Link to='/'>
           <img src={logo} alt='Logo' width='230' />
         </Link>
-        <ul className={classes['nav__nav-links']}>
-          <li className={classes['nav__nav-links__item']}>
+      </div>
+      <nav role='navigation' className={classes['header__nav']}>
+        <ul className={classes['header__nav__nav-links']}>
+          <li className={classes['header__nav__nav-links__item']}>
             {currentUser ? (
               <>
                 Hello,
@@ -43,17 +47,24 @@ function Header({ currentUser }) {
               <Link to='/signin'>Sign In</Link>
             )}
           </li>
-          <li className={classes['nav__nav-links__item']}>
+          <li className={classes['header__nav__nav-links__item']}>
             <Link to='/'>Shop</Link>
           </li>
-          <li className={classes['nav__nav-links__item']}>Return & Orders</li>
-          <li className={classes['nav__nav-links__item']}>
-            <Link to='/cart'>
-              <CartIcon />
-            </Link>
+          <li className={classes['header__nav__nav-links__item']}>
+            Return & Orders
           </li>
         </ul>
       </nav>
+      <CartIcon />
+      <div className={classes['header__menu']} onClick={() => setShow(!show)}>
+        <i className='material-icons'>menu</i>
+      </div>
+      <SideDrawer
+        currentUser={currentUser}
+        show={show}
+        onClick={() => setShow(!show)}
+        signOut={signOut}
+      />
     </header>
   );
 }

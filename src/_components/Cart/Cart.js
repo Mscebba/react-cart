@@ -70,7 +70,7 @@ function Cart({ items, price, count, loadCurrentItem }) {
       </EmptyPage>
     );
 
-  return <>{viewCart}</>;
+  return viewCart;
 }
 
 const mapStateToProps = createStructuredSelector({
