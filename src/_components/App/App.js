@@ -1,10 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 
@@ -44,7 +39,7 @@ function App({ setCurrentUser, currentUser }) {
   }, [setCurrentUser]);
 
   return (
-    <Router>
+    <>
       <Header />
       <main>
         <Switch>
@@ -62,7 +57,7 @@ function App({ setCurrentUser, currentUser }) {
         </Switch>
       </main>
       <Footer />
-    </Router>
+    </>
   );
 }
 

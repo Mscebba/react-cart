@@ -40,6 +40,10 @@
       stroke-width: 5;
     }
   }
+  @media screen and (min-width: $xlarge-breakpoint) {
+    max-width: 65vw;
+  }
+
   @media screen and (max-width: $large-breakpoint) {
     &__image {
       width: calc(50vh * 0.7);
