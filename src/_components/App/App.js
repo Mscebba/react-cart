@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -6,15 +6,20 @@ import { connect } from 'react-redux';
 import { auth, createDatabaseUser } from 'firebase/firebase.utils';
 import { setCurrentUser } from 'redux/User/user-actions';
 import { selectCurrentUser } from 'redux/User/user-selectors';
+
+import { Spinner } from 'ui';
 import Header from 'layout/Header/Header';
-import Products from '_components/Products/Products';
-import ProductDetail from '_components/Products/ProductDetail/ProductDetail';
 import Footer from 'layout/Footer/Footer';
-import Cart from '_components/Cart/Cart';
-import SignIn from '_components/SignIn/SignIn';
-import SignUp from '_components/SignUp/SignUp';
 
 import 'styles/main.scss';
+
+const Products = lazy(() => import('_components/Products/Products'));
+const ProductDetail = lazy(() =>
+  import('_components/Products/ProductDetail/ProductDetail')
+);
+const Cart = lazy(() => import('_components/Cart/Cart'));
+const SignIn = lazy(() => import('_components/SignIn/SignIn'));
+const SignUp = lazy(() => import('_components/SignUp/SignUp'));
 
 function App({ setCurrentUser, currentUser }) {
   useEffect(() => {
@@ -43,17 +48,19 @@ function App({ setCurrentUser, currentUser }) {
       <Header />
       <main>
         <Switch>
-          <Route exact path='/' component={Products} />
-          <Route exact path='/product/:id' component={ProductDetail} />
-          <Route exact path='/cart' component={Cart} />
-          <Route
-            path='/signin'
-            render={() => (currentUser ? <Redirect to='/' /> : <SignIn />)}
-          />
-          <Route
-            path='/signup'
-            render={() => (currentUser ? <Redirect to='/' /> : <SignUp />)}
-          />
+          <Suspense fallback={<Spinner />}>
+            <Route exact path='/' component={Products} />
+            <Route exact path='/product/:id' component={ProductDetail} />
+            <Route exact path='/cart' component={Cart} />
+            <Route
+              path='/signin'
+              render={() => (currentUser ? <Redirect to='/' /> : <SignIn />)}
+            />
+            <Route
+              path='/signup'
+              render={() => (currentUser ? <Redirect to='/' /> : <SignUp />)}
+            />
+          </Suspense>
         </Switch>
       </main>
       <Footer />

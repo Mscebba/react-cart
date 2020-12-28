@@ -1,6 +1,7 @@
-# React Cart App
+# React Online Store
 
-This is a Shopping Cart made with React and Redux (in progress)
+This is an Online Store made with React and Redux (in progress)
 
 ## Demo
+
 Running demo **[here](https://mscebba-react-cart.herokuapp.com/)**

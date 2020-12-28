@@ -35,7 +35,7 @@ export function fetchData() {
   return (dispatch) => {
     dispatch(fetchItems());
     axios
-      .get('https://fakestoreapi.com/products/?limit=12')
+      .get(process.env.REACT_APP_API_URL)
       .then((res) => {
         const items = res.data;
         dispatch(fetchItemsSuccess(items));
