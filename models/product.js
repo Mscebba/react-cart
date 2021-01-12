@@ -21,6 +21,12 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  slug: {
+    type: String,
+    // get: (title) => title.replaceAll(' ', '-'),
+    lowercase: true,
+    trim: true,
+  },
   categoryId: {
     type: String,
     required: true,
@@ -35,6 +41,10 @@ const productSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'category',
   },
+});
+
+productSchema.pre('validate', function () {
+  this.slug = this.title.replace(/ /g, '-').toLowerCase();
 });
 
 const Product = mongoose.model('product', productSchema);

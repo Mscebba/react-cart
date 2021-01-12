@@ -2,7 +2,7 @@ const Product = require('../models/product');
 const Category = require('../models/category');
 
 exports.getProducts = async (req, res) => {
-  const products = await Product.find(); //.populate('category', 'name country');
+  const products = await Product.find();
   res.send(products);
 };
 

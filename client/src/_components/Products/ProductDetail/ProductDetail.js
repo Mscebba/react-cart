@@ -11,7 +11,7 @@ import classes from './product-detail.module.scss';
 
 function ProductDetail({ addToCart, currentItem: { item } }) {
   let isLoading = false;
-  const { id, description, image, price, title } = item;
+  const { _id, description, imgUrl, price, title } = item;
 
   let displayProduct = isLoading ? (
     <Spinner />
@@ -19,17 +19,17 @@ function ProductDetail({ addToCart, currentItem: { item } }) {
     <div className={classes['product-detail']}>
       <div className={classes['product-detail__image']}>
         <div
-          id={id}
+          id={_id}
           className={classes['product-detail__image__img-zoom']}
-          style={{ backgroundImage: `url(${image})` }}
+          style={{ backgroundImage: `url(${imgUrl})` }}
           onMouseMove={(event) => {
-            zoomIn(event, id);
+            zoomIn(event, _id);
           }}
-          onMouseOut={(e) => zoomOut(id)}
+          onMouseOut={(e) => zoomOut(_id)}
         />
         <div
           className={classes['product-detail__image__img']}
-          style={{ backgroundImage: `url(${image})` }}
+          style={{ backgroundImage: `url(${imgUrl})` }}
         />
         <i id='zoom' className='material-icons'>
           zoom_in

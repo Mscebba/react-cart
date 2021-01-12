@@ -51,7 +51,7 @@ function Header({ currentUser }) {
             <Link to='/'>Shop</Link>
           </li>
           <li className={classes['header__nav__nav-links__item']}>
-            Return & Orders
+            <Link to='/admin'>Admin</Link>
           </li>
         </ul>
       </nav>

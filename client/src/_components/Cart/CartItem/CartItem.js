@@ -18,15 +18,15 @@ function CartItem({
   addToCart,
   deleteFromCart,
 }) {
-  const { id, image, price, title, qty } = item;
+  const { _id, imgUrl, price, title, qty, slug } = item;
 
   return (
     <div className={classes['cart-item']}>
       <div className={classes['cart-item__image']}>
-        <img src={image} alt={title} />
+        <img src={imgUrl} alt={title} />
       </div>
       <div className={classes['cart-item__description']}>
-        <Link to={`/product/${id}`} onClick={onClick}>
+        <Link to={`/product/${slug}`} onClick={onClick}>
           <h3>{title}</h3>
         </Link>
         <p>${price}</p>
@@ -40,7 +40,7 @@ function CartItem({
           </Button>
         </div>
         <div className={classes['cart-item__description__actions']}>
-          <span onClick={() => removeFromCart(id)}>
+          <span onClick={() => removeFromCart(_id)}>
             <i className='material-icons-outlined'>delete</i>
             remove item
           </span>

@@ -1,0 +1,20 @@
+.admin-container {
+  display: flex;
+  min-height: 100vh;
+
+  &__nav {
+    background-color: #222249;
+    width: 14%;
+    min-width: 200px;
+    padding-top: 6rem;
+
+    nav {
+      color: #fff;
+      display: flex;
+      flex-flow: column;
+    }
+  }
+  &__content {
+    flex: 1;
+  }
+}

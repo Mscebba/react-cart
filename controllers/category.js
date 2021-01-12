@@ -1,7 +1,7 @@
 const Category = require('../models/category');
 
 exports.getCategories = async (req, res) => {
-  const categories = await Category.find();
+  const categories = await Category.find().populate('products');
   res.send(categories);
 };
 

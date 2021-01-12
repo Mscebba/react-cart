@@ -11,7 +11,12 @@ import { Spinner } from 'ui';
 import Header from 'layout/Header/Header';
 import Footer from 'layout/Footer/Footer';
 
+import ProductsAdmin from '_components/Admin/Products/Products';
+
 import 'styles/main.scss';
+import Admin from '_components/Admin/Admin';
+import ProductsList from '_components/Admin/ProductsList/ProductsList';
+import Category from '_components/Admin/Category/Category';
 
 const Products = lazy(() => import('_components/Products/Products'));
 const ProductDetail = lazy(() =>
@@ -44,27 +49,39 @@ function App({ setCurrentUser, currentUser }) {
   }, [setCurrentUser]);
 
   return (
-    <>
-      <Header />
-      <main>
-        <Switch>
-          <Suspense fallback={<Spinner />}>
-            <Route exact path='/' component={Products} />
-            <Route exact path='/product/:id' component={ProductDetail} />
-            <Route exact path='/cart' component={Cart} />
-            <Route
-              path='/signin'
-              render={() => (currentUser ? <Redirect to='/' /> : <SignIn />)}
-            />
-            <Route
-              path='/signup'
-              render={() => (currentUser ? <Redirect to='/' /> : <SignUp />)}
-            />
-          </Suspense>
-        </Switch>
-      </main>
-      <Footer />
-    </>
+    <Switch>
+      <Route path='/admin/:path?' exact>
+        <Admin>
+          <Switch>
+            <Route exact path='/admin/' component={ProductsList} />
+            <Route path='/admin/product' component={ProductsAdmin} />
+            <Route path='/admin/category' component={Category} />
+          </Switch>
+        </Admin>
+      </Route>
+
+      <Route>
+        <Header />
+        <main>
+          <Switch>
+            <Suspense fallback={<Spinner />}>
+              <Route exact path='/' component={Products} />
+              <Route exact path='/product/:id' component={ProductDetail} />
+              <Route exact path='/cart' component={Cart} />
+              <Route
+                path='/signin'
+                render={() => (currentUser ? <Redirect to='/' /> : <SignIn />)}
+              />
+              <Route
+                path='/signup'
+                render={() => (currentUser ? <Redirect to='/' /> : <SignUp />)}
+              />
+            </Suspense>
+          </Switch>
+        </main>
+        <Footer />
+      </Route>
+    </Switch>
   );
 }
 
