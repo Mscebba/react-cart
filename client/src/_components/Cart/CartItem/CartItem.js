@@ -18,7 +18,7 @@ function CartItem({
   addToCart,
   deleteFromCart,
 }) {
-  const { _id, imgUrl, price, title, qty, slug } = item;
+  const { cartId, imgUrl, price, title, qty, slug, size } = item;
 
   return (
     <div className={classes['cart-item']}>
@@ -29,6 +29,10 @@ function CartItem({
         <Link to={`/product/${slug}`} onClick={onClick}>
           <h3>{title}</h3>
         </Link>
+        <p>
+          <small>Size: {size}</small>
+        </p>
+        <br />
         <p>${price}</p>
         <div className={classes['cart-item__description__quantity']}>
           <Button icon small light onClick={() => deleteFromCart(item)}>
@@ -40,7 +44,7 @@ function CartItem({
           </Button>
         </div>
         <div className={classes['cart-item__description__actions']}>
-          <span onClick={() => removeFromCart(_id)}>
+          <span onClick={() => removeFromCart(cartId)}>
             <i className='material-icons-outlined'>delete</i>
             remove item
           </span>

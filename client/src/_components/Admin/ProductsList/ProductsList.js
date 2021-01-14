@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Title } from 'ui';
 import { connect } from 'react-redux';
 import { fetchData } from 'redux/Shop/shop-actions';
@@ -6,7 +6,8 @@ import { fetchData } from 'redux/Shop/shop-actions';
 function ProductsList({ itemsData: { items }, fetchData }) {
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -14,9 +15,11 @@ function ProductsList({ itemsData: { items }, fetchData }) {
       <table width='100%' border='1' cellPadding='0' cellSpacing='0'>
         <thead>
           <tr>
+            <th>
+              <input type='checkbox' name='selectAll' id='' />
+            </th>
             <th>Name</th>
             <th>Description</th>
-            <th>Image</th>
             <th>Price</th>
           </tr>
         </thead>
@@ -24,8 +27,6 @@ function ProductsList({ itemsData: { items }, fetchData }) {
           {items.map(({ _id, title, description, imgUrl, price }) => {
             return (
               <tr key={_id}>
-                <td>{title}</td>
-                <td>{description}</td>
                 <td>
                   <div
                     style={{
@@ -45,6 +46,8 @@ function ProductsList({ itemsData: { items }, fetchData }) {
                     />
                   </div>
                 </td>
+                <td>{title}</td>
+                <td>{description}</td>
                 <td>{price}</td>
               </tr>
             );

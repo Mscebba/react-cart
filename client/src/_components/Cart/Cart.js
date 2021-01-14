@@ -19,12 +19,14 @@ function Cart({ items, price, count, loadCurrentItem }) {
   const tax = +(price * 0.07).toFixed(2);
   const totalPrice = (price + tax).toFixed(2);
 
-  let showItems = items.map((item) => {
+  let showItems = items.map((item, i) => {
     return (
       <CartItem
         item={item}
-        key={item.id}
-        onClick={() => loadCurrentItem(item)}
+        key={item._id + i}
+        onClick={() =>
+          loadCurrentItem({ ...item, size: ['XS', 'S', 'M', 'L', 'XL'] })
+        }
       />
     );
   });

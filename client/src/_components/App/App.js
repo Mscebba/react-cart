@@ -17,6 +17,7 @@ import 'styles/main.scss';
 import Admin from '_components/Admin/Admin';
 import ProductsList from '_components/Admin/ProductsList/ProductsList';
 import Category from '_components/Admin/Category/Category';
+import Error404 from '_components/Error404/Error404';
 
 const Products = lazy(() => import('_components/Products/Products'));
 const ProductDetail = lazy(() =>
@@ -54,8 +55,9 @@ function App({ setCurrentUser, currentUser }) {
         <Admin>
           <Switch>
             <Route exact path='/admin/' component={ProductsList} />
-            <Route path='/admin/product' component={ProductsAdmin} />
-            <Route path='/admin/category' component={Category} />
+            <Route exact path='/admin/product' component={ProductsAdmin} />
+            <Route exact path='/admin/category' component={Category} />
+            <Route component={Error404} />
           </Switch>
         </Admin>
       </Route>
@@ -70,13 +72,16 @@ function App({ setCurrentUser, currentUser }) {
               <Route exact path='/cart' component={Cart} />
               <Route
                 path='/signin'
+                exact
                 render={() => (currentUser ? <Redirect to='/' /> : <SignIn />)}
               />
               <Route
                 path='/signup'
+                exact
                 render={() => (currentUser ? <Redirect to='/' /> : <SignUp />)}
               />
             </Suspense>
+            <Route component={Error404} />
           </Switch>
         </main>
         <Footer />

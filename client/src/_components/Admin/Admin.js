@@ -13,6 +13,8 @@ function Admin({ children }) {
           <Link to='/admin/product'>Create Product</Link>
           <Link to='/admin'>Categories</Link>
           <Link to='/admin/category'>Create Category</Link>
+          <br />
+          <Link to='/'>Home</Link>
         </nav>
       </div>
       <div className={classes['admin-container__content']}>

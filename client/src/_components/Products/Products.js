@@ -25,7 +25,7 @@ function Products({
       return (
         <Product
           {...item}
-          key={item.id}
+          key={item._id}
           onClick={() => loadCurrentItem(item)}
         />
       );

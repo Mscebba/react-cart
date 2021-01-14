@@ -5,7 +5,7 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    minlength: 5,
+    minlength: 3,
     maxlength: 50,
   },
   description: {
@@ -23,9 +23,12 @@ const productSchema = new mongoose.Schema({
   },
   slug: {
     type: String,
-    // get: (title) => title.replaceAll(' ', '-'),
     lowercase: true,
     trim: true,
+  },
+  size: {
+    type: [String],
+    default: ['XS', 'S', 'M', 'L', 'XL'],
   },
   categoryId: {
     type: String,

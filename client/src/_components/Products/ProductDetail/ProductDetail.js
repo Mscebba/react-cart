@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import { zoomIn, zoomOut } from './zoomInFunc';
@@ -11,7 +11,8 @@ import classes from './product-detail.module.scss';
 
 function ProductDetail({ addToCart, currentItem: { item } }) {
   let isLoading = false;
-  const { _id, description, imgUrl, price, title } = item;
+  const { _id, description, imgUrl, price, title, size } = item;
+  const [selectedSize, setSelectedSize] = useState(['XS', 'S', 'M', 'L', 'XL']);
 
   let displayProduct = isLoading ? (
     <Spinner />
@@ -41,7 +42,28 @@ function ProductDetail({ addToCart, currentItem: { item } }) {
         <p className={classes['product-detail__description__text']}>
           {description}
         </p>
-        <Button onClick={() => addToCart(item)}>
+        {/* Code to be improved  */}
+        <p>
+          <select
+            name='size'
+            onChange={(e) => setSelectedSize(e.target.value)}
+            defaultValue=''
+          >
+            <option value='' disabled>
+              Select size
+            </option>
+            {size.map((op) => (
+              <option key={op} value={op}>
+                {op}
+              </option>
+            ))}
+          </select>
+        </p>
+        <br />
+        <Button
+          disabled={selectedSize.length > 3}
+          onClick={() => addToCart({ ...item, size: selectedSize })}
+        >
           <CartIcon
             className={classes['product-detail__description__cart-icon']}
           />

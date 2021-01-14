@@ -20,7 +20,7 @@ export function cartReducer(state = INITIAL_STATE, action) {
     case actionTypes.REMOVE_FROM_CART:
       return {
         ...state,
-        items: state.items.filter((item) => item._id !== action.payload),
+        items: state.items.filter((item) => item.cartId !== action.payload),
       };
 
     default:
