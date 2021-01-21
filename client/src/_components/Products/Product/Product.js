@@ -19,7 +19,7 @@ function Product({ id, imgUrl, title, price, onClick, slug }) {
           {/* <img src={image} alt={title} /> */}
         </div>
       </Link>
-      <Link to={`/product/${id}`} onClick={onClick}>
+      <Link to={`/product/${slug}`} onClick={onClick}>
         <b>{title}</b>
       </Link>
     </div>

@@ -1,15 +1,15 @@
 @import 'styles/_variables.scss';
 
 .product-card {
-  margin: 2rem 1rem;
-  width: calc((100vw - 6rem - 20vw) / 3);
+  margin: 2rem 0;
+  width: calc(94% / 3);
 
   @media screen and (max-width: $large-breakpoint) {
-    width: calc((100vw - 4rem - 16vw) / 2);
+    width: calc(94% / 2);
   }
 
   @media screen and (max-width: $medium-breakpoint) {
-    width: calc((100vw - 4rem - 10vw) / 2);
+    width: calc(94% / 2);
   }
 
   @media screen and (max-width: $small-breakpoint) {

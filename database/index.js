@@ -6,7 +6,9 @@ module.exports.connection = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
+      useFindAndModify: false,
     });
+
     console.log('Database Connected!!');
   } catch (error) {
     console.log(error);

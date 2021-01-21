@@ -1,39 +1,39 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
-const userSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-    minlength: 5,
-    maxlength: 50,
+const userSchema = new mongoose.Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+      minlength: 5,
+      maxlength: 50,
+    },
+    email: {
+      type: String,
+      required: true,
+      minlength: 9,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+      minlength: 6,
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    role: {
+      type: String,
+      default: 'User',
+    },
+    cart: { type: mongoose.Schema.Types.ObjectId, ref: 'carts' },
   },
-  email: {
-    type: String,
-    required: true,
-    minlength: 9,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-    minlength: 6,
-  },
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  },
-  role: {
-    type: String,
-    default: 'User',
-  },
-  cart: {
-    type: [String],
-    default: [],
-  },
-  createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now },
-});
+  {
+    timestamps: true,
+  }
+);
 
 userSchema.methods.generateJWT = function () {
   return jwt.sign(
@@ -42,6 +42,6 @@ userSchema.methods.generateJWT = function () {
   );
 };
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('users', userSchema);
 
 module.exports = User;

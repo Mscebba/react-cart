@@ -6,5 +6,10 @@
   &__grid {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    &::after {
+      content: '';
+      width: calc(94% / 3);
+    }
   }
 }

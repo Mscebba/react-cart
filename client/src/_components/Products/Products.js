@@ -22,13 +22,7 @@ function Products({
     <h2>{error}</h2>
   ) : (
     items.map((item) => {
-      return (
-        <Product
-          {...item}
-          key={item._id}
-          onClick={() => loadCurrentItem(item)}
-        />
-      );
+      return <Product {...item} key={item._id} />;
     })
   );
 

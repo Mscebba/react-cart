@@ -3,7 +3,7 @@ import * as actionTypes from './shop-types';
 const INITIAL_STATE = {
   isLoading: false,
   items: [],
-  currentItem: null,
+  currentItem: [],
   error: '',
 };
 
@@ -13,6 +13,7 @@ export function shopReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         isLoading: true,
+        currentItem: [],
       };
     case actionTypes.FETCH_ITEMS_SUCCESS:
       return {
@@ -26,12 +27,20 @@ export function shopReducer(state = INITIAL_STATE, action) {
         ...state,
         isLoading: false,
         items: [],
+        currentItem: [],
         error: action.payload,
       };
     case actionTypes.LOAD_CURRENT_ITEM:
       return {
         ...state,
+        isLoading: false,
         currentItem: action.payload,
+        error: '',
+      };
+    case actionTypes.CLEAR_CURRENT:
+      return {
+        ...state,
+        currentItem: [],
       };
     default:
       return state;

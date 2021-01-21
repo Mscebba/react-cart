@@ -8,9 +8,11 @@ const user = require('./routes/user');
 const auth = require('./routes/auth');
 const category = require('./routes/category');
 const products = require('./routes/products');
+const cart = require('./routes/cart');
 
 const app = express();
 const port = 4000;
+const Cart = require('./models/cart');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,6 +22,7 @@ app.use('/auth/', auth);
 app.use('/users/', user);
 app.use('/categories/', category);
 app.use('/products/', products);
+app.use('/carts/', cart);
 
 app.use(function (req, res, next) {
   res.setHeader(
