@@ -3,8 +3,9 @@ import { connect, useDispatch } from 'react-redux';
 
 import { fetchData } from 'redux/Shop/shop-actions';
 import { fetchCartNew } from 'redux/Cart/cart-actions';
+
+import Product from './Product';
 import { Spinner, Title } from 'ui';
-import Product from './Product/Product';
 
 import classes from './products.module.scss';
 

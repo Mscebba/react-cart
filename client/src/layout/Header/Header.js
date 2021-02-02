@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
 import { auth } from 'firebase/firebase.utils';
-import { DropDown, DropDownItem } from 'ui';
 import { selectCurrentUser } from 'redux/User/user-selectors';
-import SideDrawer from './SideDrawer/SideDrawer';
-import CartIcon from './CartIcon/CartIcon';
 
+import SideDrawer from './SideDrawer';
+import CartIcon from './CartIcon';
+
+import { DropDown, DropDownItem } from 'ui';
 import logo from 'assets/logo.png';
 
 import classes from './header.module.scss';

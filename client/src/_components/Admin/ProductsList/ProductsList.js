@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { Title } from 'ui';
 import { connect } from 'react-redux';
 import { fetchData } from 'redux/Shop/shop-actions';
+
+import { Title } from 'ui';
 
 function ProductsList({ itemsData: { items }, fetchData }) {
   useEffect(() => {

@@ -7,25 +7,23 @@ import { auth, createDatabaseUser } from 'firebase/firebase.utils';
 import { setCurrentUser } from 'redux/User/user-actions';
 import { selectCurrentUser } from 'redux/User/user-selectors';
 
+import Header from 'layout/Header';
+import Footer from 'layout/Footer';
+
+import ProductsAdmin from '_components/Admin/Products';
+import Admin from '_components/Admin';
+import ProductsList from '_components/Admin/ProductsList';
+import Category from '_components/Admin/Category';
+import Error404 from '_components/Error404';
+
 import { Spinner } from 'ui';
-import Header from 'layout/Header/Header';
-import Footer from 'layout/Footer/Footer';
-
-import ProductsAdmin from '_components/Admin/Products/Products';
-
 import 'styles/main.scss';
-import Admin from '_components/Admin/Admin';
-import ProductsList from '_components/Admin/ProductsList/ProductsList';
-import Category from '_components/Admin/Category/Category';
-import Error404 from '_components/Error404/Error404';
 
-const Products = lazy(() => import('_components/Products/Products'));
-const ProductDetail = lazy(() =>
-  import('_components/Products/ProductDetail/ProductDetail')
-);
-const Cart = lazy(() => import('_components/Cart/Cart'));
-const SignIn = lazy(() => import('_components/SignIn/SignIn'));
-const SignUp = lazy(() => import('_components/SignUp/SignUp'));
+const Products = lazy(() => import('_components/Products'));
+const ProductDetail = lazy(() => import('_components/Products/ProductDetail'));
+const Cart = lazy(() => import('_components/Cart'));
+const SignIn = lazy(() => import('_components/SignIn'));
+const SignUp = lazy(() => import('_components/SignUp'));
 
 function App({ setCurrentUser, currentUser }) {
   useEffect(() => {

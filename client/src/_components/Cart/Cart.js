@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ReactComponent as Icon } from 'assets/cart.svg';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchCartNew } from 'redux/Cart/cart-actions';
 import { cartItemsPrice, cartItemsCount } from 'redux/Cart/cart-utils';
-import CartItem from '_components/Cart/CartItem/CartItem';
+import CartItem from '_components/Cart/CartItem';
 
 import { Button, EmptyPage, Spinner, Title } from 'ui';
+import { ReactComponent as Icon } from 'assets/cart.svg';
 import classes from './cart.module.scss';
 
 function Cart() {

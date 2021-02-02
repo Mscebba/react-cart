@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 
 import useForm from 'hooks/useForm';
 import validate from 'utils/validate-signup';
-import { Button, Form, FormInput, Title } from 'ui';
 import { auth, createDatabaseUser } from 'firebase/firebase.utils';
+
+import { Button, Form, FormInput, Title } from 'ui';
 
 function SignUp() {
   const { onChange, handleSubmit, values, errors, reset } = useForm(

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+
 import useForm from 'hooks/useForm';
-import { Button, Form, FormInput, Title } from 'ui';
 import validateProducts from './validate-products';
+
+import { Button, Form, FormInput, Title } from 'ui';
 
 function Products() {
   const [categories, setCategories] = useState([]);

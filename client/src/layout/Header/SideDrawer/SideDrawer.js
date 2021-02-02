@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import { MobileDrawer } from 'ui';
 
 function SideDrawer({ currentUser, show, onClick, signOut }) {

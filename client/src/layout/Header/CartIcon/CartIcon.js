@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // import { connect } from 'react-redux';
 // import { createStructuredSelector } from 'reselect';
 
@@ -6,7 +7,6 @@ import React from 'react';
 import { ReactComponent as Cart } from 'assets/cart.svg';
 
 import classes from './cart-icon.module.scss';
-import { Link } from 'react-router-dom';
 
 function CartIcon({ count = 5 }) {
   return (

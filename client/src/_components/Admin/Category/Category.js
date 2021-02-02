@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+
 import useForm from 'hooks/useForm';
-import { Button, Form, FormInput, Title } from 'ui';
 import validateCategory from './validate-category';
+
+import { Button, Form, FormInput, Title } from 'ui';
 
 function Category() {
   const { onChange, handleSubmit, values, errors, reset } = useForm(

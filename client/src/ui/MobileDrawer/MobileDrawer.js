@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { BackDrop } from 'ui';
 
 import classes from './mobile-drawer.module.scss';
+
 function MobileDrawer({ children, onClick, userName, show }) {
   let drawerClass = [
     `${classes['mobile-drawer']}`,
