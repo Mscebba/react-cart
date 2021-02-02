@@ -1,0 +1,24 @@
+@import 'styles/_variables.scss';
+.admin-container {
+  font-family: $sansFamily;
+  display: flex;
+
+  &__nav {
+    font-family: $sansFamily;
+    background-color: #132b43;
+    width: 14%;
+    min-width: 200px;
+    padding-top: 6rem;
+
+    nav {
+      color: #fff;
+      display: flex;
+      flex-flow: column;
+    }
+  }
+  &__content {
+    flex: 1;
+    height: 100vh;
+    overflow-y: scroll;
+  }
+}

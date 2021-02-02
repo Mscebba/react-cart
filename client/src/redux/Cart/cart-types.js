@@ -1,0 +1,6 @@
+export const FETCH_CART = 'FETCH_CART';
+export const FETCH_CART_SUCCESS = 'FETCH_CART_SUCCESS';
+export const FETCH_CART_ERROR = 'FETCH_CART_ERROR';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const DELETE_ONE_ITEM = 'DELETE_ONE_ITEM';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';

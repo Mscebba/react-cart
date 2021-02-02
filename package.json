@@ -1,53 +1,34 @@
 {
   "name": "react_cart",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "axios": "^0.21.0",
-    "firebase": "6.0.2",
-    "node-sass": "4.14.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-redux": "^7.2.2",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.0",
-    "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.8",
-    "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.3.0",
-    "reselect": "^4.0.0",
-    "web-vitals": "^0.2.4"
+  "version": "1.0.0",
+  "main": "server.js",
+  "description": "React online store",
+  "repository": "git@github.com:Mscebba/react-cart.git",
+  "author": "Martin Scebba <mascebba@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": "v12.18.0",
+    "npm": "6.14.8"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "client": "cd client && yarn start",
+    "server": "nodemon server.js",
+    "build": "cd client && yarn build",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"yarn client\"",
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.9.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "5.2.8"
   },
   "devDependencies": {
-    "@types/react": "^17.0.0",
-    "@types/react-router-dom": "^5.1.6",
-    "redux-logger": "^3.0.6"
+    "concurrently": "^5.3.0"
   }
 }
