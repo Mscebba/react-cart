@@ -1,31 +1,51 @@
 import * as actionTypes from './cart-types';
-import { addItemToCart, removeItemFromCart } from './cart-utils';
+import {
+  addItemToCart,
+  deleteOneItemFromCart,
+  removeItemFromCart,
+} from './cart-utils';
 
 const INITIAL_STATE = {
+  isLoading: false,
   items: [],
+  error: '',
 };
 
-export function cartReducer(state = INITIAL_STATE, action) {
+export function cartReducer(cart = INITIAL_STATE, action) {
   switch (action.type) {
+    case actionTypes.FETCH_CART:
+      return {
+        ...cart,
+        isLoading: true,
+      };
+    case actionTypes.FETCH_CART_SUCCESS:
+      return {
+        isLoading: false,
+        items: action.payload,
+        error: '',
+      };
+    case actionTypes.FETCH_CART_ERROR:
+      return {
+        isLoading: false,
+        error: action.payload,
+      };
     case actionTypes.ADD_TO_CART:
       return {
-        ...state,
-        items: addItemToCart(state.items, action.payload),
+        ...cart,
+        items: addItemToCart(cart.items, action.payload),
       };
-    case actionTypes.DELETE_FROM_CART:
+    case actionTypes.DELETE_ONE_ITEM:
       return {
-        ...state,
-        items: removeItemFromCart(state.items, action.payload),
+        ...cart,
+        items: deleteOneItemFromCart(cart.items, action.payload),
       };
     case actionTypes.REMOVE_FROM_CART:
       return {
-        ...state,
-        items: state.items.filter((item) => item.cartId !== action.payload),
+        ...cart,
+        items: removeItemFromCart(cart.items, action.payload),
       };
 
     default:
-      return state;
+      return cart;
   }
 }
-
-export default cartReducer;

@@ -21,9 +21,11 @@ function Products() {
 
   async function getCategories() {
     try {
-      await axios.get('http://localhost:4000/categories').then((res) => {
-        setCategories(res.data);
-      });
+      await axios
+        .get(`${process.env.REACT_APP_API_BASE_URL}categories`)
+        .then((res) => {
+          setCategories(res.data);
+        });
     } catch (err) {
       console.log(err.response);
     }
@@ -35,7 +37,7 @@ function Products() {
 
   async function createProducts() {
     try {
-      await axios.post('http://localhost:4000/products', {
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}products`, {
         title: values.title,
         description: values.description,
         imgUrl: values.imgUrl,

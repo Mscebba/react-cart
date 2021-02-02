@@ -8,11 +8,10 @@ exports.getProducts = async (req, res) => {
 
 exports.getProductBySlug = async (req, res) => {
   const product = await Product.find({ slug: req.params.id });
-  if (!product) return res.status(404).send('El id no existe');
+  if (!product) return res.status(404).send("Id doesn't exists");
   res.send(product[0]);
 };
 
-// Post Datos embebidos
 exports.postNewProduct = async (
   { body: { title, description, imgUrl, price, categoryId } },
   res

@@ -1,85 +1,86 @@
 const Cart = require('../models/cart');
 
 exports.getCarts = async (req, res) => {
-  const carts = await Cart.find();
-  res.send(carts);
+  const carts = await Cart.find().populate();
+  return res.status(200).json(carts);
 };
 
 exports.postItemToCart = async (req, res) => {
-  const { prodId, name, price } = req.body;
+  const { _id, imgUrl, title, price, size, slug } = req.body;
 
-  existingProduct = await Cart.findOne({
-    'products.prodId': prodId,
+  const existingProduct = await Cart.findOne({
+    products: { $elemMatch: { prodId: _id, size } },
   });
 
   if (existingProduct) {
     try {
       await Cart.updateOne(
         {
-          'products.prodId': prodId,
+          products: { $elemMatch: { prodId: _id, size } },
         },
         {
           $inc: { 'products.$.qty': 1, total: price },
+        },
+        {
+          upsert: true,
+          new: true,
         }
       );
-      return res.status(200).send('CART UPDATED');
+
+      return res.status(201).send(req.body);
     } catch (error) {
-      console.log(error);
+      return res.status(409).json({ message: error.message });
     }
   } else {
     try {
       await Cart.updateOne(
         {},
         {
-          $push: { products: { prodId, name, price } },
+          $push: {
+            products: { prodId: _id, name: title, imgUrl, price, size, slug },
+          },
           $inc: { total: price },
+        },
+        {
+          upsert: true,
         }
       );
-      return res.status(200).send('CART UPDATED');
+      return res.status(201).send(req.body);
     } catch (error) {
-      console.log(error);
+      return res.status(409).json({ message: error.message });
     }
   }
 };
 
 exports.removeItemFromCart = async (req, res) => {
-  const { prodId, price } = req.body;
-
+  const { _id } = req.body;
   try {
     await Cart.updateOne(
       {
-        products: { $elemMatch: { prodId, qty: { $gt: 1 } } },
+        products: { $elemMatch: { _id, qty: { $gt: 1 } } },
       },
       {
-        $inc: { 'products.$.qty': -1, total: -price },
+        $inc: { 'products.$.qty': -1 },
       }
     );
-    return res.status(200).send('CART UPDATED');
+    return res.json(_id);
   } catch (error) {
     console.log(error);
   }
 };
 
 exports.deleteItemFromCart = async (req, res) => {
-  const { prodId, price } = req.body;
+  const { _id } = req.body;
 
   try {
     await Cart.updateOne(
       {},
       {
-        $pull: { products: { prodId } },
+        $pull: { products: { _id } },
       }
     );
-    return res.status(200).send('CART UPDATED');
+    return res.json(_id);
   } catch (error) {
     console.log(error);
   }
 };
-
-// exports.deleteCartById = async (req, res) => {
-//   const cart = await Cart.findByIdAndDelete(req.params.id);
-//   if (!cart) {
-//     return res.status(404).send(`El id ${req.params.id} no existe`);
-//   }
-//   res.status(200);
-// };

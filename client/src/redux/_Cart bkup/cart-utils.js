@@ -1,8 +1,7 @@
 export const addItemToCart = (cartItems, cartItemToAdd) => {
   const index = cartItems.findIndex(
     (cartItem) =>
-      cartItem.prodId === cartItemToAdd._id &&
-      cartItem.size === cartItemToAdd.size
+      cartItem._id === cartItemToAdd._id && cartItem.size === cartItemToAdd.size
   );
 
   if (index !== -1) {
@@ -19,13 +18,14 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
     {
       ...cartItemToAdd,
       qty: 1,
+      cartId: cartItemToAdd._id.concat(cartItemToAdd.size),
     },
   ];
 };
 
-export const deleteOneItemFromCart = (cartItems, cartItemToRemove) => {
+export const removeItemFromCart = (cartItems, cartItemToRemove) => {
   const index = cartItems.findIndex(
-    (cartItem) => cartItem._id === cartItemToRemove
+    (cartItem) => cartItem.cartId === cartItemToRemove.cartId
   );
 
   const newCartItems = [...cartItems];
@@ -33,13 +33,6 @@ export const deleteOneItemFromCart = (cartItems, cartItemToRemove) => {
     newCartItems[index].qty > 1 && (newCartItems[index].qty -= 1);
   }
 
-  return newCartItems;
-};
-
-export const removeItemFromCart = (cartItems, cartItemToRemove) => {
-  const newCartItems = cartItems.filter(
-    (cartItem) => cartItem._id !== cartItemToRemove
-  );
   return newCartItems;
 };
 

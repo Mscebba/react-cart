@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import { zoomIn, zoomOut } from './zoomInFunc';
+import { fetchItem, clearCurrent } from 'redux/Shop/shop-actions';
 import { addToCart } from 'redux/Cart/cart-actions';
 
 import { ReactComponent as CartIcon } from 'assets/cart.svg';
 
 import { Button, Spinner } from 'ui';
 import classes from './product-detail.module.scss';
-import { fetchItem, clearCurrent } from 'redux/Shop/shop-actions';
-import { withRouter } from 'react-router-dom';
 
 function ProductDetail({
-  addToCart,
-  itemData: { currentItem: item, isLoading, error },
+  itemData: { currentItem: item, isLoading },
   fetchItem,
   clearCurrent,
   match,
@@ -21,7 +20,10 @@ function ProductDetail({
   const { _id, description, imgUrl, price, title, size } = item;
   const [selectedSize, setSelectedSize] = useState('');
 
+  console.log(item, typeof item, '>>>ITEM');
   const slug = match.params.id;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchItem(slug);
@@ -31,9 +33,9 @@ function ProductDetail({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function selectSize() {
+  function addItem(item) {
     if (selectedSize === '') return;
-    addToCart({ ...item, size: selectedSize });
+    dispatch(addToCart(item));
   }
 
   let displayProduct = isLoading ? (
@@ -84,11 +86,7 @@ function ProductDetail({
             </select>
           </p>
           <br />
-          <Button
-            // disabled={selectedSize.length > 3}
-            onClick={selectSize}
-            // onClick={() => addToCart({ ...item, size: selectedSize })}
-          >
+          <Button onClick={() => addItem({ ...item, size: selectedSize })}>
             <CartIcon
               className={classes['product-detail__description__cart-icon']}
             />
@@ -107,5 +105,5 @@ const mapSateToProps = ({ shop }) => ({
 });
 
 export default withRouter(
-  connect(mapSateToProps, { addToCart, fetchItem, clearCurrent })(ProductDetail)
+  connect(mapSateToProps, { fetchItem, clearCurrent })(ProductDetail)
 );

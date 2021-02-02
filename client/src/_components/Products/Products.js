@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 
-import { fetchData, loadCurrentItem } from 'redux/Shop/shop-actions';
+import { fetchData } from 'redux/Shop/shop-actions';
+import { fetchCartNew } from 'redux/Cart/cart-actions';
 import { Spinner, Title } from 'ui';
 import Product from './Product/Product';
 
 import classes from './products.module.scss';
 
-function Products({
-  fetchData,
-  itemsData: { items, error, isLoading },
-  loadCurrentItem,
-}) {
+function Products({ fetchData, itemsData: { items, error, isLoading } }) {
+  const dispatch = useDispatch();
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+    dispatch(fetchCartNew());
+  }, [fetchData, dispatch]);
 
   let productsList = isLoading ? (
     <Spinner />
@@ -40,6 +39,4 @@ const mapStateToProps = ({ shop: itemsData }) => ({
   itemsData,
 });
 
-export default connect(mapStateToProps, { fetchData, loadCurrentItem })(
-  Products
-);
+export default connect(mapStateToProps, { fetchData })(Products);

@@ -3,7 +3,6 @@ import * as actionTypes from './adminProducts-types';
 const INITIAL_STATE = {
   isLoading: false,
   items: [],
-  currentItem: null,
   error: '',
 };
 
@@ -28,14 +27,8 @@ export function adminProductsReducer(state = INITIAL_STATE, action) {
         items: [],
         error: action.payload,
       };
-    case actionTypes.LOAD_CURRENT_ITEM:
-      return {
-        ...state,
-        currentItem: action.payload,
-      };
+
     default:
       return state;
   }
 }
-
-export default adminProductsReducer;

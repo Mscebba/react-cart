@@ -4,7 +4,10 @@ const itemsSchema = mongoose.Schema(
   {
     prodId: String,
     name: String,
+    imgUrl: String,
     price: Number,
+    size: String,
+    slug: String,
     qty: {
       type: Number,
       default: 1,

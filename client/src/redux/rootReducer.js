@@ -1,6 +1,4 @@
 import { combineReducers } from 'redux';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 
 import { shopReducer as shop } from './Shop/shop-reducer';
 import { cartReducer as cart } from './Cart/cart-reducer';
@@ -14,9 +12,4 @@ const rootReducer = combineReducers({
   adminProd,
 });
 
-const persistConfig = {
-  key: 'root',
-  storage,
-};
-
-export default persistReducer(persistConfig, rootReducer);
+export default rootReducer;

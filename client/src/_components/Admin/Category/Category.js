@@ -15,7 +15,7 @@ function Category() {
 
   async function createCategory() {
     try {
-      await axios.post('http://localhost:4000/categories', {
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}categories`, {
         name: values.name,
       });
       reset();

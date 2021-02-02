@@ -14,10 +14,7 @@ exports.getUserById = async (req, res) => {
 
 exports.postNewUser = async ({ body: { username, email, password } }, res) => {
   let user = await User.findOne({ email });
-  if (user)
-    return res
-      .status(400)
-      .send('El email ya pertenece a un usuario registrado');
+  if (user) return res.status(400).send('Email already exists');
 
   const salt = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(password, salt);
@@ -65,7 +62,7 @@ exports.putUserModification = async (
 exports.deleteUserById = async (req, res) => {
   const user = await User.findByIdAndDelete(req.params.id);
   if (!user) {
-    return res.status(404).send(`El id ${req.params.id} no existe`);
+    return res.status(404).send(`Id ${req.params.id} doesn't exists`);
   }
-  res.status(200).send('El usuario ha sido eliminado');
+  res.status(200).send('User deleted');
 };
